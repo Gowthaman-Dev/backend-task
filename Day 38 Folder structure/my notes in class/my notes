@@ -1,0 +1,12 @@
+first - make a project using what is the process - CRUD
+
+modle - document la senthathu than collection nu , collection la senthathu than dp soo modle create panrathu why naa to create a collection - scehma based sturtured collection - bussiness logic 
+
+
+
+
+----------------------------------------------
+
+mangodb la poda server venum -> server la api generate panna route venum -> route la controller venum -> db conection iruntha than controll ku vara data va  kondu poi db la poda mudiyum -> antha dp la than naa model la create panni vachi irupan 
+
+

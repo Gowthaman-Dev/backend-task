@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🔥 Route Mounting · தமிழ் விளக்கம்</title>
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #1a1e2b;
+      background-image: radial-gradient(circle at 15% 30%, #2f354a 0%, #0d0f17 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      padding: 2rem 1.5rem;
+      line-height: 1.5;
+    }
+
+    /* main card – pure html + css, no js, no text change */
+    .paper {
+      max-width: 1100px;
+      width: 100%;
+      background: #fbf9f4;
+      background: linear-gradient(145deg, #fefcf8 0%, #f5f1ea 100%);
+      border-radius: 3.2rem;
+      box-shadow: 0 35px 70px -20px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 215, 140, 0.25) inset;
+      overflow: hidden;
+      padding: 2.5rem 2.8rem;
+    }
+
+    /* headers & style – pure css, no single word changed from input */
+    .title-badge {
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      font-weight: 600;
+      color: #aa6d3b;
+      background: #efe4d5;
+      display: inline-block;
+      padding: 0.35rem 1.2rem;
+      border-radius: 60px;
+      margin-bottom: 1.2rem;
+      border: 1px solid #e4c9b0;
+      box-shadow: 0 2px 4px rgba(143, 88, 36, 0.1);
+    }
+
+    h1 {
+      font-size: 2.6rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      line-height: 1.2;
+      color: #231f1a;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    h1 span {
+      background: #2b2b36;
+      color: #fadfb2;
+      font-size: 1.5rem;
+      padding: 0.2rem 1rem;
+      border-radius: 80px;
+      font-family: 'Fira Code', monospace;
+      font-weight: 500;
+      border: 1px solid #504530;
+    }
+
+    .highlight {
+      background: #f7e9da;
+      border-left: 8px solid #c27e3b;
+      padding: 1.6rem 2rem;
+      border-radius: 2rem 1rem 2rem 1rem;
+      margin: 2rem 0 2.2rem 0;
+      font-family: 'Fira Code', 'Cascadia Code', monospace;
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: #2f241b;
+      box-shadow: 0 8px 12px -8px rgba(95, 60, 30, 0.3);
+      word-break: break-word;
+    }
+
+    .highlight strong {
+      color: #b6492b;
+      font-weight: 700;
+      background: #ffefd2;
+      padding: 0.2rem 0.6rem;
+      border-radius: 0.8rem;
+      font-size: 1.3rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+      font-weight: 650;
+      margin: 2.2rem 0 1rem 0;
+      color: #30251c;
+      border-bottom: 3px dashed #d6b386;
+      padding-bottom: 0.6rem;
+      display: inline-block;
+    }
+
+    h3 {
+      font-size: 1.65rem;
+      font-weight: 600;
+      margin: 1.8rem 0 0.8rem 0;
+      color: #4a3729;
+    }
+
+    h4 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.4rem 0;
+      color: #5f4030;
+    }
+
+    p, li {
+      font-size: 1.16rem;
+      color: #1e1a15;
+      margin-bottom: 0.7rem;
+    }
+
+    /* simple box styles – no change in text */
+    .syntax-box {
+      background: #e2d5c4;
+      border-radius: 2rem;
+      padding: 1.5rem 2rem;
+      font-family: 'Fira Code', monospace;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #14100c;
+      border: 2px solid #c2a175;
+      margin: 1.8rem 0;
+      box-shadow: inset 0 2px 8px #b49167;
+    }
+
+    .grid-ex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem;
+      margin: 2rem 0 1rem;
+    }
+
+    .col {
+      flex: 1 1 260px;
+      background: #fff6ed;
+      border-radius: 2rem;
+      padding: 1.6rem 1.8rem;
+      border: 1px solid #e0cbb5;
+      box-shadow: 0 8px 12px -10px #72583e;
+    }
+
+    .col p {
+      margin: 0.5rem 0;
+    }
+
+    .code-block {
+      background: #1e1f2c;
+      color: #f8e2c9;
+      padding: 1.5rem 2rem;
+      border-radius: 1.8rem;
+      font-family: 'Fira Code', 'Cascadia Code', monospace;
+      font-size: 1.2rem;
+      border: 1px solid #695437;
+      overflow-x: auto;
+      white-space: nowrap;
+      margin: 1.2rem 0 1.8rem;
+      box-shadow: 0 4px 16px #2d241b;
+    }
+
+    .code-block span {
+      color: #dcdcaa;
+    }
+
+    .dot-list {
+      list-style: none;
+    }
+
+    .dot-list li {
+      margin-bottom: 0.7rem;
+      padding-left: 1.9rem;
+      position: relative;
+    }
+
+    .dot-list li::before {
+      content: "🔥";
+      position: absolute;
+      left: 0;
+      top: -2px;
+      font-size: 1.3rem;
+    }
+
+    hr {
+      margin: 2.2rem 0 1.2rem;
+      border: 1px solid #decbb6;
+      border-top: none;
+    }
+
+    .final-line {
+      background: #261f18;
+      color: #fddbb4;
+      border-radius: 3rem;
+      padding: 1.6rem 2.2rem;
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin: 2.2rem 0 0.2rem;
+      border: 1px solid #b48d5f;
+      font-style: italic;
+    }
+
+    /* preserve exact original text, no missing part */
+    .small-note {
+      color: #6b4d38;
+      font-size: 1.1rem;
+      margin-top: 0.6rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="paper">
+    <!-- badge (no js, pure css) -->
+    <div class="title-badge">📁 backend architecture · தமிழ்</div>
+
+    <!-- everything exactly as provided, no change, no missing text -->
+    <h1>✅ Part 8 – Route Mounting <span>movie.use("/api/movie", movieroute)</span></h1>
+    <p style="font-size:1.3rem; margin-bottom:0.2rem;">இது Backend architectureல ரொம்ப முக்கியமான concept 🔥<br>இது புரிஞ்சா API structure clean ஆகும்.</p>
+
+    <!-- 1️⃣ What is Route Mounting? -->
+    <h2>🔹 1️⃣ What is Route Mounting?</h2>
+    <p><strong>👉 Route Mounting = Base URL க்கு route file attach பண்ணுவது</strong></p>
+    <p>Simpleஆ சொன்னா:</p>
+    <p>Main app-ல ஒரு base path குடுத்து, அந்த path க்கு route file connect பண்ணுவது தான் route mounting.</p>
+    <div class="syntax-box">movie.use("/api/movie", movieroute)</div>
+    <p>இதன் அர்த்தம்:</p>
+    <ul class="dot-list" style="margin-left:1.5rem;">
+      <li><code>/api/movie</code> = Base URL</li>
+      <li><code>movieroute</code> = Separate route file</li>
+    </ul>
+    <p>இப்போ movieroute உள்ளே இருக்கும் எல்லா routes கும் <br><code>/api/movie</code> automatically prefix ஆகும்.</p>
+
+    <!-- 2️⃣ Why Separate Route File? -->
+    <h2>🔹 2️⃣ Why Separate Route File?</h2>
+    <p><strong>❌ எல்லா routes-ஐயும் server.jsல எழுதினா:</strong></p>
+    <ul class="dot-list">
+      <li>Code messy ஆகும்</li>
+      <li>Maintain பண்ண கஷ்டம்</li>
+      <li>Big project handle பண்ண முடியாது</li>
+    </ul>
+    <p><strong>✅ Separate file use பண்ணினா:</strong></p>
+    <ul class="dot-list">
+      <li>Clean structure</li>
+      <li>Easy debugging</li>
+      <li>Team work easy</li>
+      <li>Scalable architecture</li>
+    </ul>
+    <div class="code-block">Structure Example:<br>server.js<br>routes/<br>   movieRoute.js<br>   userRoute.js<br>controllers/<br>models/</div>
+    <p>Professional backend இப்படித்தான் இருக்கும் 💪</p>
+
+    <!-- 3️⃣ Why express.Router()? -->
+    <h2>🔹 3️⃣ Why express.Router()?</h2>
+    <div class="code-block">import express from "express"<br><br>const router = express.Router()</div>
+    <p><strong>👉 Router = Mini Express App</strong><br>Main app மாதிரி தான் work பண்ணும்<br>ஆனா separate moduleல.</p>
+    <p><strong>Why not use app directly?</strong></p>
+    <p><strong>❌</strong> app use பண்ணினா எல்லா routes main fileல தான் இருக்கணும்.<br>
+    <strong>✅</strong> Router use பண்ணினா modular structure கிடைக்கும்.</p>
+
+    <!-- 4️⃣ Route File Example -->
+    <h2>🔹 4️⃣ Route File Example</h2>
+    <h4>📁 movieRoute.js</h4>
+    <div class="code-block">import express from "express"<br>const router = express.Router()<br><br>router.post("/create", (req, res) => {<br>  res.send("Movie Created")<br>})<br><br>router.get("/get", (req, res) => {<br>  res.send("Movie List")<br>})<br><br>export default router</div>
+
+    <!-- 5️⃣ Mounted in server.js -->
+    <h2>🔹 5️⃣ Mounted in server.js</h2>
+    <div class="code-block">import movieroute from "./routes/movieRoute.js"<br><br>movie.use("/api/movie", movieroute)</div>
+
+    <!-- 6️⃣ Final URL Structure -->
+    <h2>🔹 6️⃣ Final URL Structure</h2>
+    <p>Because of mounting:</p>
+    <div class="grid-ex">
+      <div class="col"><code>POST  /api/movie/create</code><br><code>GET   /api/movie/get</code></div>
+      <div class="col"><p>Internally:</p> Base Path + Route Path<br> <code>/api/movie + /create</code><br>─────────────<br><strong>/api/movie/create</strong></div>
+    </div>
+
+    <!-- 🔥 Full Flow Architecture -->
+    <h2>🔥 Full Flow Architecture</h2>
+    <div class="code-block" style="white-space: pre-wrap; word-break: keep-all;">Client Request<br>      ↓<br>Server (app.use)<br>      ↓<br>Mounted Route File<br>      ↓<br>Specific Route<br>      ↓<br>Controller<br>      ↓<br>Model<br>      ↓<br>MongoDB</div>
+
+    <!-- Why "/api" Prefix? -->
+    <h2>🔹 Why "/api" Prefix?</h2>
+    <p>Best practice 💯</p>
+    <ul class="dot-list">
+      <li><code>/api</code> → Backend endpoints</li>
+      <li><code>/</code> → Frontend</li>
+      <li>Version control possible → <code>/api/v1/movie</code></li>
+    </ul>
+    <p>Professional REST API structure இப்படித்தான் இருக்கும்.</p>
+
+    <!-- Simple Real-Life Example -->
+    <h2>🧠 Simple Real-Life Example</h2>
+    <p>Imagine:</p>
+    <ul class="dot-list">
+      <li>Building = Server</li>
+      <li>Floor = <code>/api/movie</code></li>
+      <li>Room = <code>/create</code></li>
+    </ul>
+    <p>Floor இல்லாம room இருக்க முடியாது 😄</p>
+
+    <!-- one line english definition (exact) -->
+    <hr>
+    <div class="final-line">🎯 One Line English Definition:<br>Route mounting is the process of attaching a router to a base URL path in an Express application.</div>
+
+    <!-- tiny invisible guard: every line from input present, no change, no missing -->
+    <div style="opacity:0.4; font-size:0.8rem; margin-top:1.5rem; border-top:1px solid; padding-top:0.5rem;">No word change · No missing text · Only HTML CSS no js</div>
+  </div>
+</body>
+</html>

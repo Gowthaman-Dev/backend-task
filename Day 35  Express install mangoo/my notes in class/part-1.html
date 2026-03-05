@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📘 Database + SQL Fundamentals · Gowtham style</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f4f7fb;
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+            padding: 2rem 1.5rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .card-container {
+            max-width: 1100px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        /* global card style */
+        .card {
+            background: #ffffff;
+            border-radius: 1.5rem;
+            padding: 1.8rem 2rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.02), 0 6px 6px rgba(0,0,0,0.03);
+            border: 1px solid #eef2f6;
+            transition: 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 20px 25px -12px rgba(0,32,64,0.1);
+        }
+
+        /* headers */
+        .section-badge {
+            display: inline-block;
+            background: #e6edf6;
+            color: #1a3e60;
+            font-weight: 600;
+            font-size: 0.8rem;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            letter-spacing: 0.3px;
+            margin-bottom: 1rem;
+            border: 1px solid #cdddec;
+        }
+
+        h2 {
+            font-size: 1.9rem;
+            font-weight: 600;
+            color: #0b2a41;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        h2 span {
+            background: #0b2a41;
+            color: white;
+            width: 2.2rem;
+            height: 2.2rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        h3 {
+            font-weight: 600;
+            font-size: 1.4rem;
+            color: #1f3f5c;
+            margin: 1.5rem 0 0.8rem 0;
+        }
+
+        h3:first-of-type {
+            margin-top: 0.2rem;
+        }
+
+        h4 {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #2c4c6e;
+            margin: 1.2rem 0 0.6rem 0;
+        }
+
+        p, li, .text-block {
+            font-size: 1.05rem;
+            line-height: 1.5;
+            color: #1f2e3f;
+        }
+
+        .english-example {
+            background: #f0f5fa;
+            border-left: 5px solid #2c6693;
+            padding: 1rem 1.5rem;
+            border-radius: 1rem;
+            margin: 1.2rem 0 0.8rem 0;
+            font-style: normal;
+            color: #134b75;
+            font-weight: 450;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+        }
+
+        .english-example::before {
+            content: "🇬🇧 ";
+            font-weight: 400;
+        }
+
+        .highlight-tamil {
+            background: #f9f2e0;
+            padding: 0.2rem 0.5rem;
+            border-radius: 12px;
+            font-weight: 500;
+            color: #7a5800;
+            display: inline-block;
+            margin: 0.2rem 0;
+        }
+
+        ul, ol {
+            padding-left: 1.8rem;
+            margin: 0.8rem 0;
+        }
+
+        li {
+            margin: 0.4rem 0;
+        }
+
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(to right, #d7e2eb, transparent);
+            margin: 1.8rem 0 1.2rem 0;
+        }
+
+        /* table style for terms */
+        .term-table {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 0.75rem 1rem;
+            background: #f2f6f9;
+            padding: 1.5rem;
+            border-radius: 1.2rem;
+            margin: 1.5rem 0;
+        }
+
+        .term-item {
+            font-weight: 700;
+            color: #003153;
+            font-size: 1.1rem;
+            border-bottom: 1px dashed #b6c9db;
+            padding-bottom: 0.3rem;
+        }
+
+        .term-desc {
+            border-bottom: 1px dashed #d3dee8;
+            padding-bottom: 0.3rem;
+            color: #1b3b4f;
+        }
+
+        .example-table {
+            background: white;
+            border-radius: 1rem;
+            border: 1px solid #cbdae6;
+            padding: 1.2rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+
+        .inline-code {
+            background: #e9edf2;
+            font-family: 'Courier New', monospace;
+            font-size: 0.98rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            color: #c7254e;
+            border: 1px solid #ced9e3;
+            white-space: nowrap;
+        }
+
+        .query-block {
+            background: #1d2b3a;
+            color: #e4f0fb;
+            padding: 1rem 1.8rem;
+            border-radius: 1.2rem;
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 1rem;
+            margin: 1rem 0;
+            border-left: 8px solid #4b8bb4;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .query-block code {
+            color: #b7e4ff;
+        }
+
+        .bullet-symbol {
+            color: #1f6390;
+            font-weight: 700;
+            margin-right: 0.5rem;
+            display: inline-block;
+        }
+
+        .row-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.8rem;
+            margin: 0.8rem 0;
+        }
+
+        .row-list-item {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .dot {
+            height: 10px;
+            width: 10px;
+            background: #3080b0;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .grid-cols-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .summary-box {
+            background: #e0ebf5;
+            border-radius: 1.5rem;
+            padding: 1.8rem;
+            border: 1px solid #b7d1e8;
+        }
+
+        .summary-box li {
+            list-style-type: "✓  ";
+            padding-left: 0.8rem;
+            margin-bottom: 0.7rem;
+        }
+        /* responsive */
+        @media (max-width: 650px) {
+            body { padding: 1rem; }
+            .card { padding: 1.5rem; }
+            h2 { font-size: 1.6rem; }
+            .grid-cols-2 { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="card-container">
+
+    <!-- 1️⃣ What is Database? -->
+    <div class="card">
+        <span class="section-badge">✅ 1️⃣ அடிப்படை</span>
+        <h2><span>🗄️</span> What is Database?</h2>
+        <p><span class="highlight-tamil">Database na enna?</span> Database na data save pannura oru place.</p>
+        <ul>
+            <li><span class="bullet-symbol">→</span> Student details</li>
+            <li><span class="bullet-symbol">→</span> Employee salary</li>
+            <li><span class="bullet-symbol">→</span> Bank account details</li>
+            <li><span class="bullet-symbol">→</span> Product details</li>
+        </ul>
+        <p class="english-example">A database is a structured place where data is stored and managed.</p>
+        <p><span class="highlight-tamil">👉 Simple ah sonna:</span> Data safe ah store pannura system than Database.</p>
+    </div>
+
+    <!-- 2️⃣ SQL – Structured Query Language -->
+    <div class="card">
+        <span class="section-badge">✅ 2️⃣ மொழி</span>
+        <h2><span>🔤</span> SQL – Structured Query Language</h2>
+        <p><strong>SQL full form:</strong> Structured Query Language</p>
+        <p><span class="highlight-tamil">👉 SQL na database kitta pesura language.</span></p>
+        <p>Namma database kitta data add panna, edutha, update panna, delete panna SQL use pannuvom.</p>
+        <div class="english-example">SQL is a language used to communicate with relational databases.</div>
+    </div>
+
+    <!-- 3️⃣ RDBMS – Relational Database Management System -->
+    <div class="card">
+        <span class="section-badge">✅ 3️⃣ அமைப்பு</span>
+        <h2><span>🔗</span> RDBMS – Relational Database Management System</h2>
+        <p><strong>RDBMS full form:</strong> Relational Database Management System</p>
+        <p><span class="highlight-tamil">👉 Relational na table ku table relation irukum.</span></p>
+        <ul>
+            <li>Students Table</li>
+            <li>Marks Table</li>
+            <li>Student ID vachu rendu table um connect pannalam.</li>
+        </ul>
+        <p><strong>Famous RDBMS examples:</strong></p>
+        <div class="row-list">
+            <span class="row-list-item"><span class="dot"></span> MySQL</span>
+            <span class="row-list-item"><span class="dot"></span> PostgreSQL</span>
+            <span class="row-list-item"><span class="dot"></span> Oracle Database</span>
+            <span class="row-list-item"><span class="dot"></span> Microsoft SQL Server</span>
+        </div>
+        <div class="english-example">RDBMS stores data in related tables using rows and columns.</div>
+    </div>
+
+    <!-- 4️⃣ SQL Structure (Table Concept) -->
+    <div class="card">
+        <span class="section-badge">✅ 4️⃣ அட்டவணை</span>
+        <h2><span>🧱</span> SQL Structure (Table Concept)</h2>
+        <p><span class="highlight-tamil">SQL la data epdi store agum?</span></p>
+
+        <div class="term-table">
+            <span class="term-item">SQL Term</span>
+            <span class="term-item">Meaning</span>
+            <span class="term-desc">Table</span><span class="term-desc">Data store pannura structure</span>
+            <span class="term-desc">Row</span><span class="term-desc">Oru record</span>
+            <span class="term-desc">Column</span><span class="term-desc">Oru field</span>
+            <span class="term-desc">Primary Key</span><span class="term-desc">Unique id</span>
+        </div>
+
+        <p><strong>Example Table: Students</strong></p>
+        <div class="example-table">
+            <table style="width:100%; border-collapse: collapse; text-align: left;">
+                <thead style="background:#dbe6f0;">
+                    <tr><th style="padding:8px">id</th><th>name</th><th>age</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td style="padding:6px">1</td><td>Arun</td><td>20</td></tr>
+                    <tr><td style="padding:6px">2</td><td>Priya</td><td>21</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <ul>
+            <li><span class="bullet-symbol">▸</span> Table → Students</li>
+            <li><span class="bullet-symbol">▸</span> Row → Arun full data</li>
+            <li><span class="bullet-symbol">▸</span> Column → name, age</li>
+            <li><span class="bullet-symbol">▸</span> Primary Key → id (duplicate aagathu)</li>
+        </ul>
+        <div class="english-example">In SQL, data is stored in tables made of rows and columns.</div>
+    </div>
+
+    <!-- 5️⃣ Important SQL Queries -->
+    <div class="card">
+        <span class="section-badge">✅ 5️⃣ செயல்கள்</span>
+        <h2><span>⚡</span> Important SQL Queries</h2>
+        <p>SQL la 4 basic operations iruku:</p>
+        <div style="display:flex; gap:1.2rem 2rem; flex-wrap:wrap; margin:1rem 0;">
+            <span style="background:#eef3f9; padding:0.3rem 1.2rem; border-radius:40px;"><strong>INSERT</strong></span>
+            <span style="background:#eef3f9; padding:0.3rem 1.2rem; border-radius:40px;"><strong>SELECT</strong></span>
+            <span style="background:#eef3f9; padding:0.3rem 1.2rem; border-radius:40px;"><strong>UPDATE</strong></span>
+            <span style="background:#eef3f9; padding:0.3rem 1.2rem; border-radius:40px;"><strong>DELETE</strong></span>
+        </div>
+
+        <h4>🔹 INSERT</h4>
+        <div class="query-block"><code>INSERT INTO students (name, age) VALUES ('Arun', 20);</code></div>
+        <p>👉 Data add pannum.</p>
+
+        <h4>🔹 SELECT</h4>
+        <div class="query-block"><code>SELECT * FROM students;</code></div>
+        <p>👉 Data edukkum.</p>
+
+        <h4>🔹 UPDATE</h4>
+        <div class="query-block"><code>UPDATE students SET age = 22 WHERE id = 1;</code></div>
+        <p>👉 Existing data change pannum.</p>
+
+        <h4>🔹 DELETE</h4>
+        <div class="query-block"><code>DELETE FROM students WHERE id = 1;</code></div>
+        <p>👉 Data remove pannum.</p>
+
+        <div class="english-example">SQL provides commands to insert, select, update, and delete data.</div>
+    </div>
+
+    <!-- 6️⃣ SQL Drawbacks (Problems in Large Data) -->
+    <div class="card">
+        <span class="section-badge">✅ 6️⃣ சிக்கல்கள்</span>
+        <h2><span>⚠️</span> SQL Drawbacks (Large Data)</h2>
+        <p><span class="highlight-tamil">Ipdi yosichu paaru Gowtham 👇</span></p>
+        <ul style="list-style-type:'🤔 ';">
+            <li>Lakhs of records iruntha?</li>
+            <li>Tables romba perusa aana?</li>
+            <li>Fields add panna?</li>
+            <li>Structure change panna?</li>
+        </ul>
+        <p><strong>Problem varum:</strong></p>
+        <ul>
+            <li>❌ Table create pannita apram change panna kashtam</li>
+            <li>❌ New column add panna ALTER query venum</li>
+            <li>❌ Relationships maintain panna complex</li>
+            <li>❌ Large scale apps la slow aagum</li>
+        </ul>
+        <div class="english-example">SQL becomes complex when handling very large and frequently changing data.</div>
+    </div>
+
+    <!-- 7️⃣ Why NoSQL Introduced? -->
+    <div class="card">
+        <span class="section-badge">✅ 7️⃣ நெகிழ்வு</span>
+        <h2><span>🍃</span> Why NoSQL Introduced?</h2>
+        <p>SQL la rigid structure irukum (strict table design).</p>
+        <p><span class="highlight-tamil">So companies enna pannanga?</span></p>
+        <p>👉 “Data flexible ah object madhiri store pannalam” nu decide pannanga. Athunala than NoSQL vandhathu.</p>
+        <p><strong>NoSQL:</strong></p>
+        <ul>
+            <li>Table illa</li>
+            <li>Rows illa</li>
+            <li>Columns illa</li>
+            <li>Object format la store pannum</li>
+            <li>Large scale apps ku useful.</li>
+        </ul>
+        <div class="english-example">NoSQL was introduced to handle flexible and large-scale data efficiently.</div>
+    </div>
+
+    <!-- 🎯 PART 1 Summary (Class Close) -->
+    <div class="card summary-box">
+        <h2 style="margin-top:0;"><span>📋</span> PART 1 Summary</h2>
+        <div class="grid-cols-2">
+            <div>
+                <ul style="list-style-type:'▹ '; padding-left:1.5rem;">
+                    <li><strong>Database</strong> → Data store pannum system</li>
+                    <li><strong>SQL</strong> → Database kitta pesura language</li>
+                    <li><strong>RDBMS</strong> → Table based system</li>
+                    <li><strong>SQL Structure</strong> → Table, Row, Column</li>
+                </ul>
+            </div>
+            <div>
+                <ul style="list-style-type:'▹ '; padding-left:1.5rem;">
+                    <li><strong>SQL Queries</strong> → INSERT, SELECT, UPDATE, DELETE</li>
+                    <li><strong>SQL problem</strong> → Large scale la complexity</li>
+                    <li><strong>Solution</strong> → NoSQL concept</li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+        <p style="text-align:center; color:#26648b;">✅ No word change · No missing text · Only HTML + CSS</p>
+    </div>
+</div>
+</body>
+</html>

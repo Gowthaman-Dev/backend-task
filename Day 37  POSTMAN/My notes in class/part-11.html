@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>✅ Part 11 – Get By ID · Dynamic Routing</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #12171f;
+      background: radial-gradient(circle at 20% 40%, #252b36, #0b0e13);
+      font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 1.5rem;
+      line-height: 1.55;
+    }
+
+    .paper {
+      max-width: 1250px;
+      width: 100%;
+      background: #fcf7f0;
+      background: linear-gradient(155deg, #fffbf4 0%, #f6ede2 100%);
+      border-radius: 4.2rem;
+      box-shadow: 0 45px 85px -15px #030202, 0 0 0 1px #ebd6bb inset;
+      padding: 3rem 3.5rem;
+    }
+
+    .section-tag {
+      background: #c57c3c;
+      color: #150e06;
+      font-weight: 800;
+      font-size: 1.3rem;
+      letter-spacing: 1px;
+      display: inline-block;
+      padding: 0.5rem 2.2rem;
+      border-radius: 60px;
+      border: 1px solid #f7cf9f;
+      box-shadow: 0 6px 10px rgba(0,0,0,0.2);
+      margin-bottom: 1.8rem;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #261e14;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    h1 .id-dynamic {
+      background: #2f2d39;
+      color: #feda97;
+      font-family: 'Fira Code', monospace;
+      font-size: 2rem;
+      padding: 0.4rem 1.8rem;
+      border-radius: 60px;
+      border: 1px solid #c3a063;
+    }
+
+    h2 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #3f2e1c;
+      margin: 2.4rem 0 1rem 0;
+      border-left: 14px solid #ca803d;
+      padding-left: 1.5rem;
+    }
+    h3 {
+      font-size: 2.1rem;
+      font-weight: 650;
+      margin: 2rem 0 0.5rem;
+      color: #523b27;
+    }
+    h4 {
+      font-size: 1.7rem;
+      font-weight: 600;
+      margin: 1.6rem 0 0.3rem;
+      color: #5e412c;
+    }
+
+    p, li, .block-text {
+      font-size: 1.3rem;
+      color: #1f1810;
+      margin-bottom: 0.9rem;
+    }
+
+    .code-box {
+      background: #1c1d28;
+      color: #f8e1c4;
+      padding: 1.8rem 2.3rem;
+      border-radius: 2.5rem;
+      font-family: 'Fira Code', 'Cascadia Code', monospace;
+      font-size: 1.3rem;
+      line-height: 1.8;
+      border: 1px solid #bb9869;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+      margin: 2rem 0;
+      box-shadow: 0 10px 22px #2f2419;
+    }
+
+    .code-inline {
+      background: #e5d5be;
+      font-family: 'Fira Code', monospace;
+      padding: 0.2rem 1.1rem;
+      border-radius: 1.1rem;
+      border: 1px solid #b3884c;
+      font-size: 1.25rem;
+      color: #1e160f;
+    }
+
+    ul {
+      list-style: none;
+      margin: 1rem 0 1.5rem 1.5rem;
+    }
+    li {
+      margin-bottom: 0.9rem;
+      padding-left: 2.4rem;
+      position: relative;
+    }
+    li::before {
+      content: "🔥";
+      position: absolute;
+      left: 0;
+      top: -0.1rem;
+      font-size: 1.7rem;
+    }
+
+    .highlight-green {
+      background: #d4ecd4;
+      border-left: 12px solid #2a752a;
+      padding: 1.5rem 2rem;
+      border-radius: 2rem;
+      margin: 1.8rem 0;
+      font-weight: 500;
+    }
+
+    .highlight-orange {
+      background: #f9e5d2;
+      border-left: 12px solid #b46425;
+      padding: 1.5rem 2.2rem;
+      border-radius: 2rem;
+      margin: 1.8rem 0;
+    }
+
+    .flow-diagram {
+      background: #2c2721;
+      color: #fce3bf;
+      border-radius: 2.8rem;
+      padding: 2.2rem 2.8rem;
+      font-family: 'Fira Code', monospace;
+      font-size: 1.4rem;
+      line-height: 2.3;
+      margin: 2.2rem 0;
+      white-space: pre-wrap;
+    }
+
+    .row-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    .card-example {
+      flex: 1 1 280px;
+      background: #efe2d1;
+      border-radius: 2rem;
+      padding: 1.8rem 2rem;
+      border: 2px solid #b8864b;
+    }
+
+    hr {
+      border: 2px dashed #b18b5c;
+      margin: 3rem 0 2.5rem;
+    }
+
+    .oneliner-eng {
+      background: #201f1b;
+      color: #fce0b5;
+      border-radius: 4rem;
+      padding: 2rem 3rem;
+      font-size: 1.6rem;
+      border: 1px solid #d7af74;
+      margin: 2.5rem 0 1rem;
+      font-style: italic;
+    }
+
+    .footer-stamp {
+      opacity: 0.45;
+      font-size: 1rem;
+      margin-top: 2.5rem;
+      border-top: 1px solid #ac8b62;
+      padding-top: 1rem;
+      text-align: right;
+      color: #463a2c;
+    }
+  </style>
+</head>
+<body>
+<div class="paper">
+  <div class="section-tag">✅ Part 11 – Get By ID (Dynamic Routing)</div>
+  <h1>🔎 ஒரு specific document <span class="id-dynamic">_id மூலம்</span></h1>
+  <p style="font-size:1.6rem; font-weight:600;">இது CRUDல மிகவும் important 🔥<br>ஒரு specific document-ஐ அதன் _id மூலம் retrieve பண்ணுவது.</p>
+  <p style="font-size:1.4rem; background: #e6d5c0; padding: 1rem 2.4rem; border-radius: 3rem;">🎯 Goal: Dynamic routing + req.params clear ஆகணும்</p>
+
+  <!-- 1️⃣ What is Dynamic Routing? -->
+  <h2>🔹 1️⃣ What is Dynamic Routing?</h2>
+  <p>Static route:</p>
+  <div class="code-box">/api/movie/get</div>
+  <p>Dynamic route:</p>
+  <div class="code-box">/api/movie/:userid</div>
+  <p><strong>👉 :userid = Dynamic parameter</strong></p>
+  <p>இது URLல value change ஆகும்.</p>
+  <p>Example:</p>
+  <div class="row-flex">
+    <div class="card-example"><code>/api/movie/65f2a123abcd1234</code></div>
+    <div class="card-example"><code>/api/movie/88ggs777yyhh9999</code></div>
+  </div>
+  <p><strong>Route same தான்<br>ID மட்டும் change ஆகும் 🔥</strong></p>
+
+  <!-- 2️⃣ req.params -->
+  <h2>🔹 2️⃣ req.params</h2>
+  <p>Dynamic route value எங்கே கிடைக்கும்?</p>
+  <p><strong>👉 req.params</strong></p>
+  <p>Example:</p>
+  <div class="code-box">req.params.userid</div>
+  <p>Route:</p>
+  <div class="code-box">router.get("/:userid", getMovieById)</div>
+  <p>Controllerல:</p>
+  <div class="code-box">const id = req.params.userid</div>
+
+  <!-- 3️⃣ findById() -->
+  <h2>🔹 3️⃣ findById()</h2>
+  <p>MongoDBல specific document find பண்ண use பண்ணுற method.</p>
+  <div class="code-box">movieDataModules.findById(id)</div>
+  <p><strong>👉 Internally இது _id fieldல search பண்ணும்.</strong></p>
+  <p>Same as:</p>
+  <div class="code-box">movieDataModules.find({ _id: id })</div>
+  <p>But findById more clean & direct.</p>
+
+  <!-- 4️⃣ Full Route Example -->
+  <h2>🔥 4️⃣ Full Route Example</h2>
+  <h4>📁 movieRoute.js</h4>
+  <div class="code-box">router.get("/:userid", getMovieById)</div>
+
+  <!-- 5️⃣ Controller Example -->
+  <h2>🔥 5️⃣ Controller Example</h2>
+  <div class="code-box">export const getMovieById = async (req, res) => {
+  try {
+    const id = req.params.userid
+
+    const movie = await movieDataModules.findById(id)
+
+    if (!movie) {
+      return res.status(404).json({
+        success: false,
+        message: "Movie not found"
+      })
+    }
+
+    res.status(200).json({
+      success: true,
+      data: movie
+    })
+
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Server error"
+    })
+  }
+}</div>
+
+  <!-- 6️⃣ Returning Single Field -->
+  <h2>🔹 6️⃣ Returning Single Field</h2>
+  <p>Sometimes full document வேண்டாம்.</p>
+  <p>Only one field return பண்ணலாம்.</p>
+  <p>Example:</p>
+  <div class="code-box">const movie = await movieDataModules.findById(id)
+
+res.json({
+   MovieType: movie.MovieType
+})</div>
+  <p>OR better way:</p>
+  <div class="code-box">const movie = await movieDataModules.findById(id).select("MovieType")</div>
+  <p><strong>👉 .select() use பண்ணினா specific field மட்டும் வரும்.</strong></p>
+  <p>Professional method 💯</p>
+
+  <!-- 7️⃣ Full Flow – Get By ID -->
+  <h2>🔥 7️⃣ Full Flow – Get By ID</h2>
+  <div class="flow-diagram">Client → GET /api/movie/12345
+            ↓
+Route matches "/:userid"
+            ↓
+req.params.userid = 12345
+            ↓
+Model.findById(12345)
+            ↓
+MongoDB search _id
+            ↓
+Single document return
+            ↓
+JSON Response (200)</div>
+
+  <!-- 8️⃣ Status Codes -->
+  <h2>🔹 8️⃣ Status Codes</h2>
+  <ul>
+    <li>200 → Success</li>
+    <li>404 → ID not found</li>
+    <li>500 → Server error</li>
+  </ul>
+
+  <!-- Why Dynamic Routing Important -->
+  <h2>🔥 Why Dynamic Routing Important?</h2>
+  <p>Without dynamic routing:</p>
+  <div class="highlight-orange"><strong>❌ Separate route for every ID create பண்ணணும் 😵</strong></div>
+  <p>With dynamic routing:</p>
+  <div class="highlight-green"><strong>✅ Single route handle all IDs</strong><br>Scalable + Clean Architecture.</div>
+
+  <!-- One Line English Definition -->
+  <h2>🧠 One Line English Definition:</h2>
+  <div class="oneliner-eng">Dynamic routing allows us to capture variable values from the URL using req.params and retrieve specific documents using findById().</div>
+
+  <hr>
+  <div class="footer-stamp">No word change · No missing text · Only HTML CSS no js</div>
+</div>
+</body>
+</html>

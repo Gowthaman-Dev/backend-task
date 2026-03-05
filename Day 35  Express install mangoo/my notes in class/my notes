@@ -1,0 +1,83 @@
+*ithuvarakum -server set - route make - api set panrathu - antha api kulla data vara request and responces - ithalam thunder client podu process panni irukan api podu 
+
+
+
+=>sql - Structured Query Language 
+
+->RDBMS = Relational Database Management System
+*Data stored in rows & columns
+
+sql la quesrys irukum 
+
+->the database management pannuravanga niraiya peru irukanga other ither companys one one vachi irupanga 
+
+->sql - RDBMS -> ithula enna problems varum large set of data maintain pannum pothu tabls count athigamagum 
+->so new format kunduvanthanga athan no sql querys write panna vendam so data va yeduthu object ta poduvan nu deside pannitanga 
+
+->node la sql and no sql rendum use pannlam but most of companys move to no sql becasue avanga data va object ta handle panna mudiyum 
+
+
+
+
+=>BSON - BSON = Binary Serialized Object Notation
+
+BSON stands for Binary JavaScript Object Notation. It is a binary-encoded serialization format used primarily by MongoDB to store documents and make remote procedure calls, offering faster parsing, efficient storage, and extended data types (such as Date and BinData) compared to standard JSON.
+
+->ithu yellam document mattam save agum file marii 
+->object mari save agum intha bson datas ithu yetha base panni irukum naa json na base panni irukum 
+->ithalam yenga process agum naa mangoDb la 
+
+
+
+=>MongoDB - is a no sql database that stores data in json like documents insert of tables and rows stuture like sql database stuture can change dynamically without stric table design the store the data inside the collections and each record is called the document colection of doucment and infromation senthathu than oru collection namma yappudi anga tables nu solluvam  athu mattam inga collection  
+->sql la iruka droback ennana onces tables create pannita - marupadiyum poi edit pannanum naa thirumpa poi edit pannanum poi yella field  change pannanum add pannanum naa athuku thaniya query add pannanum soo code la changes varum so ithu mattam problems irunthathu naala they create like a object   
+
+->oru or document kum oru oru unique id create pannum automattic ka  _id
+
+mongoDB is documented oriented its like naturally with js object this means its very powerfull for node.js applications data stored in bson formate intenally 
+->mango naa perusu nu meaning large kind of data va handle panrathu 
+
+
+
+=>ORM Methods 
+
+-> object relation mapping in sql orm map table to object in sql mappling table to object in mangodb act like ODM object document mapper 
+->orm method use panni shema generate pannalam model generate pannalam , validation write , interact with mangodb using javacript method 
+->avoding raw database query 
+->mangodb kuda pesanum na ORM method ku yaru help pannuva naa mangoos kura libray
+->module irumtha than shema
+
+
+(npm i mongoose)
+
+
+mongoDb - two iruku -> browser la run agurathu -> system la run agurathu 
+->online la colud la run agum 
+
+
+=>
+*mangoos thani 
+*mangoDb thani rendukum samantham illa 
+
+->MongoDb - 
+online  - cloud storage - 512mb use pannalam athuku mela ponaa money pay pannanum 
+offline - compass ithu local run agura compass - GUI
+
+
+
+Username : gowthaman_db_user
+password : y4GevqEiwuIZmJ4D
+
+drive link :mongodb+srv://gowthaman_db_user:<db_password>@mern-cluster.nt5xzqg.mongodb.net/?appName=mern-cluster
+
+compress link : mongodb+srv://gowthaman_db_user:<db_password>@mern-cluster.nt5xzqg.mongodb.net/
+
+
+
+
+->route , controller kum intha db kum samantham illa 
+
+->dp connection or addition procees panna config nu oru floder podanum 
+
+drive link :mongodb+srv://gowthaman_db_user:<db_password>@mern-cluster.nt5xzqg.mongodb.net/?appName=mern-cluster
+->.net/newdb?appName <- inga database name kudukanum 

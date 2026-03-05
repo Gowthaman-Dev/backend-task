@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NoSQL + MongoDB Fundamentals</title>
+
+  <style>
+
+    body{
+      font-family: Arial, Helvetica, sans-serif;
+      background:#f4f6f8;
+      margin:0;
+      padding:0;
+      line-height:1.6;
+    }
+
+    .container{
+      max-width:1000px;
+      margin:40px auto;
+      background:#ffffff;
+      padding:40px;
+      border-radius:12px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h1{
+      text-align:center;
+      color:#2c3e50;
+      margin-bottom:30px;
+    }
+
+    h2{
+      color:#34495e;
+      margin-top:30px;
+      border-left:6px solid #8e44ad;
+      padding-left:10px;
+    }
+
+    .point{ margin-left:20px; }
+
+    ul{ margin-left:25px; }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:15px;
+    }
+
+    table, th, td{
+      border:1px solid #ccc;
+    }
+
+    th, td{
+      padding:10px;
+      text-align:left;
+    }
+
+    th{ background:#ecf0f1; }
+
+    pre{
+      background:#0f172a;
+      color:#e5e7eb;
+      padding:20px;
+      border-radius:10px;
+      overflow:auto;
+    }
+
+    .summary{
+      background:#f9fafb;
+      padding:15px;
+      border-radius:10px;
+      margin-top:15px;
+      font-weight:bold;
+    }
+
+  </style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>NoSQL + MongoDB Fundamentals</h1>
+
+<h2>✅ 1️⃣ What is NoSQL?</h2>
+
+<p>NoSQL na enna?</p>
+
+<p>NoSQL = Not Only SQL</p>
+
+<p class="point">👉 SQL madhiri strict table structure illa.</p>
+<p class="point">👉 Data flexible ah store pannalam.</p>
+<p class="point">👉 Mostly object format (JSON) la store pannum.</p>
+
+<p><b>English Sentence:</b><br>
+NoSQL is a non-relational database system that stores data in flexible formats.</p>
+
+
+<h2>✅ 2️⃣ Why NoSQL Better for Large Data?</h2>
+
+<p>SQL la:</p>
+
+<ul>
+<li>Fixed schema (table structure strict)</li>
+<li>New column add panna ALTER query</li>
+<li>Large joins slow aagum</li>
+<li>Big scale apps la performance issue</li>
+</ul>
+
+<p>NoSQL la:</p>
+
+<p class="point">✔ Flexible structure</p>
+<p class="point">✔ Horizontal scaling easy</p>
+<p class="point">✔ Large data handle panna easy</p>
+<p class="point">✔ Object based storage</p>
+
+<p><b>Example:</b></p>
+
+<ul>
+<li>Social media apps</li>
+<li>E-commerce</li>
+<li>Real-time apps</li>
+</ul>
+
+<p><b>English Sentence:</b><br>
+NoSQL handles large and changing data more efficiently than traditional SQL databases.</p>
+
+
+<h2>✅ 3️⃣ Introduction to MongoDB</h2>
+
+<p>👉 Most popular NoSQL database.</p>
+
+<p>Entity:<br>
+MongoDB</p>
+
+<p>MongoDB:</p>
+
+<ul>
+<li>Document oriented database</li>
+<li>JSON-like structure use pannum</li>
+<li>Tables illa</li>
+<li>Rows illa</li>
+<li>Columns illa</li>
+</ul>
+
+<p><b>English Sentence:</b><br>
+MongoDB is a document-oriented NoSQL database that stores data in JSON-like format.</p>
+
+
+<h2>✅ 4️⃣ MongoDB Structure</h2>
+
+<p>SQL vs MongoDB compare pannuvom 👇</p>
+
+<table>
+<tr>
+<th>SQL</th>
+<th>MongoDB</th>
+</tr>
+<tr>
+<td>Database</td>
+<td>Database</td>
+</tr>
+<tr>
+<td>Table</td>
+<td>Collection</td>
+</tr>
+<tr>
+<td>Row</td>
+<td>Document</td>
+</tr>
+<tr>
+<td>Column</td>
+<td>Field</td>
+</tr>
+<tr>
+<td>Primary Key</td>
+<td>_id</td>
+</tr>
+</table>
+
+<p>🔹 Collection</p>
+
+<p>SQL la table nu solluvom.<br>
+MongoDB la collection nu solluvom.</p>
+
+<p><b>Example:</b></p>
+
+<ul>
+<li>users collection</li>
+<li>products collection</li>
+</ul>
+
+<p>🔹 Document</p>
+
+<p>Oru record than document.</p>
+
+<p><b>Example:</b></p>
+
+<pre>
+{
+  "name": "Arun",
+  "age": 22,
+  "city": "Chennai"
+}
+</pre>
+
+<p class="point">👉 Idhu oru document.</p>
+
+<p>🔹 Field</p>
+
+<p>"name", "age", "city" → Fields</p>
+
+
+<h2>✅ 5️⃣ What is _id in MongoDB?</h2>
+
+<p>MongoDB la:</p>
+
+<p class="point">👉 Every document ku automatic ah _id create aagum.</p>
+
+<p><b>Example:</b></p>
+
+<pre>
+{
+  "_id": "656d8fd9f12a8e4c12345678",
+  "name": "Arun",
+  "age": 22
+}
+</pre>
+
+<p class="point">✔ Unique value</p>
+<p class="point">✔ Duplicate aagathu</p>
+<p class="point">✔ Primary key madhiri work pannum</p>
+
+<p><b>English Sentence:</b><br>
+MongoDB automatically generates a unique _id for every document.</p>
+
+
+<h2>✅ 6️⃣ Dynamic Schema Concept</h2>
+
+<p>SQL la:</p>
+
+<p>Table create panna apram fields change panna kashtam.</p>
+
+<p>MongoDB la:</p>
+
+<p>Different documents different fields irukkalam 👇</p>
+
+<pre>
+{
+  "name": "Arun",
+  "age": 22
+}
+
+{
+  "name": "Priya",
+  "age": 21,
+  "city": "Madurai"
+}
+</pre>
+
+<p class="point">👉 Structure same irukanum nu compulsory illa.</p>
+
+<p>Idha than Dynamic Schema nu solluvom.</p>
+
+<p><b>English Sentence:</b><br>
+MongoDB allows flexible schema where documents in the same collection can have different fields.</p>
+
+
+<h2>✅ 7️⃣ Why MongoDB Powerful for Node.js?</h2>
+
+<p>Node.js la data mostly:</p>
+
+<p class="point">👉 Object format la irukum</p>
+<p class="point">👉 JSON format la irukum</p>
+
+<p>MongoDB:</p>
+
+<p class="point">👉 JSON-like format la data store pannum</p>
+<p class="point">👉 So directly match aagum</p>
+
+<p>Conversion romba easy.</p>
+
+<p><b>Example:</b></p>
+
+<pre>
+const user = {
+  name: "Arun",
+  age: 22
+}
+</pre>
+
+<p class="point">👉 Idha straight ah MongoDB ku save pannalam.</p>
+
+<p><b>English Sentence:</b><br>
+MongoDB works naturally with JavaScript objects, making it ideal for Node.js applications.</p>
+
+
+<h2>✅ 8️⃣ Why Companies Move to MongoDB?</h2>
+
+<p class="point">✔ Large scale apps</p>
+<p class="point">✔ Fast development</p>
+<p class="point">✔ Flexible structure</p>
+<p class="point">✔ Microservices architecture</p>
+<p class="point">✔ Cloud support strong</p>
+
+<p>Big companies use pannura database.</p>
+
+
+<h2>🎯 PART 2 Summary (Class End Summary)</h2>
+
+<div class="summary">
+NoSQL = Flexible database<br>
+MongoDB = Document oriented NoSQL database<br>
+Table → Collection<br>
+Row → Document<br>
+Column → Field<br>
+Primary key → _id<br>
+Dynamic Schema → Different structure allowed<br>
+Best for Node.js apps
+</div>
+
+</div>
+
+</body>
+</html>

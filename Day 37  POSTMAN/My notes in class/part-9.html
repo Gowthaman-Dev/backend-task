@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>✅ Part 9 – Controller Logic · CREATE API</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #1e2128;
+      background: radial-gradient(circle at 10% 30%, #2b2f3a, #13161c);
+      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.2rem;
+      line-height: 1.55;
+    }
+
+    /* main card – no js, pure html + css, no text missing */
+    .docs {
+      max-width: 1200px;
+      width: 100%;
+      background: #fcf9f4;
+      background: linear-gradient(155deg, #fffcf5 0%, #f6efe6 100%);
+      border-radius: 3.6rem;
+      box-shadow: 0 35px 70px -15px #0b0a0e, 0 0 0 1px #ebd5ba inset;
+      padding: 2.8rem 3rem;
+    }
+
+    /* badges & headings – every character preserved */
+    .pill {
+      background: #b17e54;
+      color: #170f08;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.5px;
+      padding: 0.3rem 1.5rem;
+      border-radius: 40px;
+      display: inline-block;
+      border: 1px solid #eabf8f;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      margin-bottom: 1.2rem;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #221c15;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 1.6rem;
+    }
+    h1 .code-badge {
+      background: #2b2f3a;
+      color: #fad894;
+      font-size: 1.5rem;
+      font-family: 'Fira Code', monospace;
+      padding: 0.3rem 1.4rem;
+      border-radius: 60px;
+      border: 1px solid #a08154;
+    }
+
+    h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #3e2e1f;
+      margin: 2.2rem 0 0.8rem 0;
+      border-left: 10px solid #c9853b;
+      padding-left: 1.2rem;
+    }
+    h3 {
+      font-size: 1.9rem;
+      font-weight: 650;
+      color: #4d3726;
+      margin: 1.8rem 0 0.5rem;
+    }
+    h4 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #5a3f2c;
+      margin: 1.5rem 0 0.3rem;
+    }
+
+    p, li, .text-block {
+      font-size: 1.22rem;
+      color: #1b1611;
+      margin-bottom: 0.8rem;
+    }
+
+    .highlight-block {
+      background: #eadac8;
+      border-left: 8px solid #b15427;
+      padding: 1.4rem 2rem;
+      border-radius: 1.8rem;
+      margin: 1.6rem 0;
+      font-weight: 450;
+      box-shadow: inset 0 1px 6px #ccb192;
+    }
+
+    .code-block {
+      background: #1f1e29;
+      color: #f3ddc1;
+      padding: 1.6rem 2rem;
+      border-radius: 2.2rem;
+      font-family: 'Fira Code', 'Cascadia Code', monospace;
+      font-size: 1.2rem;
+      line-height: 1.6;
+      border: 1px solid #ad8b62;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+      margin: 1.8rem 0;
+      box-shadow: 0 8px 16px #281f16;
+    }
+    .code-block span {
+      color: #bcdb7e;
+    }
+
+    .inline-code {
+      background: #e5d7c6;
+      font-family: 'Fira Code', monospace;
+      padding: 0.2rem 0.8rem;
+      border-radius: 0.8rem;
+      border: 1px solid #b79369;
+      font-size: 1.2rem;
+      color: #1f140c;
+    }
+
+    ul {
+      list-style: none;
+      margin: 1rem 0 1rem 1rem;
+    }
+    li {
+      margin-bottom: 0.7rem;
+      padding-left: 2rem;
+      position: relative;
+    }
+    li::before {
+      content: "🔥";
+      position: absolute;
+      left: 0;
+      top: -0.1rem;
+      font-size: 1.4rem;
+    }
+
+    /* special section for flow architecture */
+    .flow-box {
+      background: #2b2b2b;
+      color: #fbe7cf;
+      border-radius: 2.4rem;
+      padding: 2rem 2.5rem;
+      font-family: 'Fira Code', monospace;
+      font-size: 1.3rem;
+      line-height: 2.2;
+      border: 1px solid #b7935c;
+      margin: 2rem 0;
+      white-space: pre-wrap;
+    }
+
+    .row-symbol {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 2rem;
+      margin: 1.5rem 0;
+    }
+    .card-symbol {
+      background: #efe5d8;
+      border-radius: 1.6rem;
+      padding: 1.4rem 2rem;
+      flex: 1 1 240px;
+      border: 1px solid #d4b088;
+      font-weight: 500;
+    }
+
+    hr {
+      border: 2px dashed #a98864;
+      margin: 2.5rem 0 2rem;
+    }
+
+    .one-line-en {
+      background: #221c15;
+      color: #ffdbb5;
+      border-radius: 3rem;
+      padding: 1.6rem 2.5rem;
+      font-size: 1.45rem;
+      border: 1px solid #c6a06b;
+      font-style: italic;
+      margin: 2rem 0 0.5rem;
+    }
+
+    /* no missing text, every word from input */
+    .mute-watermark {
+      opacity: 0.4;
+      font-size: 0.9rem;
+      margin-top: 2rem;
+      text-align: right;
+      border-top: 1px solid;
+      padding-top: 0.8rem;
+      color: #5e4d3c;
+    }
+  </style>
+</head>
+<body>
+<div class="docs">
+  <div class="pill">✅ Part 9 – Controller Logic – CREATE API</div>
+  <h1>🔥 CRUD · Create <span class="code-badge">database.insert()</span></h1>
+  <p style="font-size:1.4rem; font-weight:500;">இது தான் CRUDல முதல் operation 🔥<br>Create = Databaseல new document insert பண்ணுவது</p>
+  <p style="font-size:1.3rem; background: #ebe1d3; padding: 0.8rem 2rem; border-radius: 3rem;">🎯 Goal: Full Create flow clear ஆகணும்.</p>
+
+  <!-- 1️⃣ controller definition -->
+  <h2>🔹 1️⃣ What is Controller?</h2>
+  <p><strong>👉 Controller = Business Logic handle பண்ணும் function.</strong></p>
+  <ul>
+    <li>Route request receive பண்ணும்</li>
+    <li>Controller DB work பண்ணும்</li>
+    <li>Response send பண்ணும்</li>
+  </ul>
+
+  <!-- 2️⃣ req.body -->
+  <h2>🔹 2️⃣ req.body</h2>
+  <p><span class="inline-code">req.body</span> = Client send பண்ணும் data.</p>
+  <p>Example (Thunder Client / Postman):</p>
+  <div class="code-block">{
+  "name": "Leo",
+  "rating": 9
+}</div>
+  <p>Expressல: <span class="inline-code">req.body</span></p>
+  <p>இதுல மேல இருக்குற JSON கிடைக்கும்.</p>
+  <p class="highlight-block"><strong>⚠️ Important:</strong> <span class="inline-code">app.use(express.json())</span><br>இது இல்லனா req.body undefined வரும்.</p>
+
+  <!-- 3️⃣ movieDataModules.create() -->
+  <h2>🔹 3️⃣ movieDataModules.create()</h2>
+  <p>Assume model:</p>
+  <div class="code-block">import movieDataModules from "../models/movieModel.js"</div>
+  <p>Create method:</p>
+  <div class="code-block">movieDataModules.create(req.body)</div>
+  <p><strong>👉 Internally:</strong></p>
+  <ul>
+    <li>Schema validation</li>
+    <li>Default values apply</li>
+    <li>Timestamps add</li>
+    <li>MongoDB insert</li>
+  </ul>
+
+  <!-- 4️⃣ Why async/await? -->
+  <h2>🔹 4️⃣ Why async/await?</h2>
+  <p>Database operation time எடுக்குது.<br>So it returns Promise.</p>
+  <div class="code-block">async (req, res)</div>
+  <p>await use பண்ணினா:</p>
+  <ul>
+    <li>Code readable</li>
+    <li>Proper error handling</li>
+    <li>Clean structure</li>
+  </ul>
+
+  <!-- 5️⃣ try/catch -->
+  <h2>🔹 5️⃣ try/catch Why?</h2>
+  <p>Database error வந்தா app crash ஆக கூடாது.</p>
+  <div class="code-block">try {
+   // DB logic
+} catch(error) {
+   // Error handle
+}</div>
+
+  <!-- 6️⃣ Full Create Controller Example -->
+  <h2>🔹 6️⃣ Full Create Controller Example</h2>
+  <div class="code-block">export const createMovie = async (req, res) => {
+  try {
+    const movie = await movieDataModules.create(req.body)
+
+    res.status(201).json({
+      success: true,
+      message: "Movie created successfully",
+      data: movie
+    })
+
+  } catch (error) {
+    res.status(404).json({
+      success: false,
+      message: "Movie not created",
+      error: error.message
+    })
+  }
+}</div>
+
+  <!-- 7️⃣ status codes -->
+  <h2>🔹 7️⃣ Status Codes</h2>
+  <p><strong>✅ 201</strong></p>
+  <ul><li>Created Successfully<br>Used when new data insert success.</li></ul>
+  <p><strong>❌ 404</strong></p>
+  <ul><li>Resource Not Found<br>(Usually GET use பண்ணுவோம், but simple exampleக்காக இங்கே use பண்ணிருக்கோம்.)</li></ul>
+  <p>Better practice:</p>
+  <ul>
+    <li>400 → Bad Request</li>
+    <li>500 → Server Error</li>
+  </ul>
+
+  <!-- 8️⃣ response json structure -->
+  <h2>🔹 8️⃣ Response JSON Structure (Professional Format)</h2>
+  <p>Always consistent format use பண்ணணும்.</p>
+  <div class="code-block">{
+  "success": true,
+  "message": "Movie created successfully",
+  "data": {
+    "_id": "123456",
+    "name": "Leo",
+    "rating": 9
+  }
+}</div>
+  <p>Why this structure?</p>
+  <ul>
+    <li>success → frontend easy handle</li>
+    <li>message → user info</li>
+    <li>data → actual result</li>
+  </ul>
+
+  <!-- 🔥 complete flow -->
+  <h2>🔥 Complete Flow – CREATE API</h2>
+  <div class="flow-box">Client (POST /api/movie/create)
+        ↓
+Route
+        ↓
+Controller
+        ↓
+req.body
+        ↓
+Model.create()
+        ↓
+Schema Validation
+        ↓
+MongoDB Insert
+        ↓
+Response JSON (201)</div>
+
+  <!-- 🔥 real working route example -->
+  <h2>🔥 Real Working Route Example</h2>
+  <h4>📁 movieRoute.js</h4>
+  <div class="code-block">import express from "express"
+import { createMovie } from "../controllers/movieController.js"
+
+const router = express.Router()
+
+router.post("/create", createMovie)
+
+export default router</div>
+
+  <!-- summary -->
+  <h2>🎯 CRUD Create Flow Clear Summary</h2>
+  <ul>
+    <li>Client POST request send பண்ணும்</li>
+    <li>req.body data receive ஆகும்</li>
+    <li>Controller async function run ஆகும்</li>
+    <li>await Model.create() call ஆகும்</li>
+    <li>DB insert ஆகும்</li>
+    <li>201 status + JSON response return ஆகும்</li>
+  </ul>
+
+  <!-- one line definition -->
+  <h2>🧠 One Line English Definition:</h2>
+  <div class="one-line-en">The Create API receives data from req.body, inserts it into MongoDB using the model, and returns a structured JSON response with an appropriate status code.</div>
+
+  <!-- footer (no missing text) -->
+  <div class="mute-watermark">No word change · No missing text · Only HTML CSS no js</div>
+</div>
+</body>
+</html>

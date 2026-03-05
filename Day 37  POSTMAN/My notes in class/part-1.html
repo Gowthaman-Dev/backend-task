@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>PART 1 – MongoDB Basic + ORM vs ODM</title>
+<style>
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#ffffff;
+    color:#222222;
+    line-height:1.8;
+}
+.header{
+    background:#0ea5e9;
+    color:#ffffff;
+    padding:25px;
+    text-align:center;
+    font-size:26px;
+    font-weight:bold;
+}
+.container{
+    width:90%;
+    max-width:1100px;
+    margin:30px auto;
+}
+.section{
+    margin-bottom:30px;
+    padding:20px;
+    border:1px solid #e5e7eb;
+    border-radius:8px;
+}
+.section h2{
+    color:#0ea5e9;
+    margin-bottom:15px;
+}
+ul{
+    margin-left:20px;
+}
+.code{
+    background:#f3f4f6;
+    padding:12px;
+    border-radius:6px;
+    font-family:monospace;
+    margin-top:10px;
+}
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:10px;
+}
+th, td{
+    border:1px solid #d1d5db;
+    padding:10px;
+    text-align:left;
+}
+th{
+    background:#f9fafb;
+    font-weight:bold;
+}
+.highlight{
+    background:#f0f9ff;
+    padding:12px;
+    border-left:5px solid #0ea5e9;
+    margin-top:15px;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+🔥 PART 1 – MongoDB Basic + ORM vs ODM (Foundation Strong Pannanum)
+</div>
+
+<div class="container">
+
+<div class="section">
+<p><strong>Gowtham, indha part romba mukkiyam.</strong><br>
+Idhu purinjiduchuna next ellam smooth ah pogum.</p>
+
+<h2>1️⃣ Database na enna?</h2>
+<p>Database na data store panna oru place.</p>
+
+<p>Example:</p>
+<ul>
+<li>Movie details</li>
+<li>User details</li>
+<li>Orders</li>
+<li>Products</li>
+</ul>
+
+<p>👉 Simple ah sonna:<br>
+Database is a structured place where we store and manage data.</p>
+</div>
+
+<div class="section">
+<h2>2️⃣ MongoDB na enna?</h2>
+
+<p>MongoDB create pannina database system dhaan MongoDB.</p>
+
+<p>MongoDB is a NoSQL Database.</p>
+
+<p>👉 SQL madhiri table-based illa.<br>
+👉 JSON format la data store pannum.</p>
+</div>
+
+<div class="section">
+<h2>3️⃣ MongoDB Structure (Very Important)</h2>
+
+<p>MongoDB la structure ippadi irukum:</p>
+
+<table>
+<tr>
+<th>SQL Concept</th>
+<th>MongoDB Concept</th>
+</tr>
+<tr><td>Database</td><td>Database</td></tr>
+<tr><td>Table</td><td>Collection</td></tr>
+<tr><td>Row</td><td>Document</td></tr>
+<tr><td>Column</td><td>Field</td></tr>
+<tr><td>Primary Key</td><td>_id</td></tr>
+</table>
+
+<p>Example:</p>
+
+<p><strong>SQL Table:</strong></p>
+
+<div class="code">
+id&nbsp;&nbsp;&nbsp;name&nbsp;&nbsp;&nbsp;age
+</div>
+
+<p><strong>MongoDB Document:</strong></p>
+
+<div class="code">
+{<br>
+&nbsp;&nbsp;"_id": "699966a14dbf0b1690ab1af2",<br>
+&nbsp;&nbsp;"name": "Gowtham",<br>
+&nbsp;&nbsp;"age": 23<br>
+}
+</div>
+
+<p>👉 MongoDB la row nu sollama Document nu solvom<br>
+👉 Table ku badhil Collection</p>
+</div>
+
+<div class="section">
+<h2>4️⃣ MongoDB Internal Structure Deep Explanation</h2>
+
+<p>📌 Database</p>
+<p>Big container</p>
+
+<p>📌 Collection</p>
+<p>Table madhiri</p>
+
+<p>📌 Document</p>
+<p>JSON object madhiri</p>
+
+<p>📌 Field</p>
+<p>Key-value pair</p>
+
+<p>Example:</p>
+
+<div class="code">
+{<br>
+&nbsp;&nbsp;"movieName": "Forever You",<br>
+&nbsp;&nbsp;"DirectorName": "ABC"<br>
+}
+</div>
+
+<p>movieName → Field<br>
+Forever You → Value</p>
+</div>
+
+<div class="section">
+<h2>5️⃣ SQL vs MongoDB Commands Mapping</h2>
+
+<table>
+<tr>
+<th>SQL</th>
+<th>MongoDB</th>
+</tr>
+<tr><td>INSERT</td><td>create()</td></tr>
+<tr><td>SELECT</td><td>find()</td></tr>
+<tr><td>SELECT by id</td><td>findById()</td></tr>
+<tr><td>UPDATE</td><td>findByIdAndUpdate()</td></tr>
+<tr><td>DELETE</td><td>findByIdAndDelete()</td></tr>
+</table>
+</div>
+
+<div class="section">
+<h2>6️⃣ ORM vs ODM (Super Important)</h2>
+
+<p>🔹 ORM – Object Relational Mapping</p>
+
+<p>ORM SQL database kku use pannuvom.</p>
+
+<p>Example:</p>
+<ul>
+<li>MySQL</li>
+<li>PostgreSQL</li>
+</ul>
+
+<p>ORM la:<br>
+Table ↔ Class mapping</p>
+
+<p>🔹 ODM – Object Document Mapping</p>
+
+<p>MongoDB ku use pannuvom.</p>
+
+<p>Document ↔ Object mapping</p>
+</div>
+
+<div class="section">
+<h2>7️⃣ Mongoose enna?</h2>
+
+<p>Mongoose is a ODM library for MongoDB.</p>
+
+<p>👉 It helps Node.js connect with MongoDB<br>
+👉 It gives structure<br>
+👉 It gives validation<br>
+👉 It gives built-in methods</p>
+
+<p>Simple English Sentence:<br>
+Mongoose is an ODM library that connects Node.js applications with MongoDB.</p>
+</div>
+
+<div class="section">
+<h2>8️⃣ Why Mongoose Important?</h2>
+
+<p>Without mongoose:</p>
+<ul>
+<li>Direct MongoDB driver use pannanum</li>
+<li>Manual validation</li>
+<li>No schema control</li>
+</ul>
+
+<p>With mongoose:</p>
+<ul>
+<li>Schema define pannalam</li>
+<li>Validation automatic</li>
+<li>Default values set pannalam</li>
+<li>Timestamps automatic</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>9️⃣ Why Schema Important?</h2>
+
+<p>MongoDB flexible database.</p>
+
+<p>But real project la structure illama irundha problem varum.</p>
+
+<p>Example:</p>
+
+<p>User1:</p>
+<div class="code">{ "name": "A" }</div>
+
+<p>User2:</p>
+<div class="code">{ "username": "B" }</div>
+
+<p>Structure mismatch varum.</p>
+
+<p>So schema use pannuvom to control structure.</p>
+</div>
+
+<div class="section">
+<h2>🔟 Movie Project Context</h2>
+
+<p>Namma movie project la fields:</p>
+
+<ul>
+<li>movieName</li>
+<li>ProducerName</li>
+<li>DirectorName</li>
+<li>accterName</li>
+<li>acctressName</li>
+<li>MovieType</li>
+<li>movieLanguage</li>
+<li>status</li>
+<li>RealingDate</li>
+<li>createdBy</li>
+<li>updatedBy</li>
+</ul>
+
+<p>Ithu ellam document la irukum.</p>
+
+<p>Collection name:<br>
+👉 movieData</p>
+</div>
+
+<div class="section">
+<h2>🔥 Final Concept Recap (Very Important)</h2>
+
+<div class="highlight">
+Architecture flow:<br>
+Application → Mongoose (ODM) → MongoDB → Database
+</div>
+</div>
+
+<div class="section">
+<h2>🎯 Teaching Strategy (Class la ippadi sollu)</h2>
+
+<p>First ask:</p>
+
+<ul>
+<li>SQL yaarukku theriyum?</li>
+<li>Table example kaami</li>
+<li>Athu MongoDB ku convert panni kaami</li>
+<li>ORM vs ODM difference explain</li>
+<li>Appo than Mongoose introduce pannu</li>
+</ul>
+
+</div>
+
+</div>
+
+</body>
+</html>

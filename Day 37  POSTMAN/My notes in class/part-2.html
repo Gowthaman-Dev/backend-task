@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>🔥 PART 2 – Project Setup + Folder Structure</title>
+<style>
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f8fafc;
+    color:#1e293b;
+    line-height:1.8;
+}
+.header{
+    background:#111827;
+    color:#ffffff;
+    padding:25px;
+    text-align:center;
+    font-size:26px;
+    font-weight:bold;
+}
+.container{
+    width:90%;
+    max-width:1100px;
+    margin:30px auto;
+}
+.section{
+    background:#ffffff;
+    padding:22px;
+    margin-bottom:25px;
+    border-radius:8px;
+    border:1px solid #e5e7eb;
+}
+.section h2{
+    color:#2563eb;
+    margin-bottom:12px;
+}
+.code{
+    background:#f1f5f9;
+    padding:12px;
+    border-radius:6px;
+    font-family:monospace;
+    margin-top:10px;
+    white-space:pre-wrap;
+}
+.highlight{
+    background:#e0f2fe;
+    padding:12px;
+    border-left:5px solid #0284c7;
+    margin-top:15px;
+}
+ul{
+    margin-left:20px;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+🔥 PART 2 – Project Setup + Folder Structure (Clean Architecture)
+</div>
+
+<div class="container">
+
+<div class="section">
+<p><strong>Gowtham, indha part la real backend start agudhu.</strong><br>
+Inga mistake pannina next ellam confusion aagum. So step by step serious ah teach pannanum.</p>
+
+<h2>1️⃣ Project Create Pannuradhu</h2>
+
+<p><strong>Step 1 – Folder Create</strong></p>
+
+<p>Example:</p>
+
+<div class="code">movie-backend</div>
+
+<p>Inside open terminal:</p>
+
+<div class="code">npm init -y</div>
+
+<p>👉 Idhu package.json create pannum.</p>
+</div>
+
+<div class="section">
+<h2>2️⃣ package.json Explain (Class la kandippa sollanum)</h2>
+
+<p>Important fields:</p>
+
+<div class="code">
+{
+  "name": "movie-project",
+  "version": "1.0.0",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  }
+}
+</div>
+
+<p>🔹 main</p>
+<p>Entry file (server.js)</p>
+
+<p>🔹 type: module</p>
+
+<p>Why important?</p>
+
+<p>ES6 import/export use panna.</p>
+
+<p>Without this:</p>
+
+<div class="code">import express from 'express'</div>
+
+<p>work aagathu.</p>
+
+<p>Simple English Sentence:<br>
+"type: module" allows us to use ES6 import and export syntax in Node.js.</p>
+</div>
+
+<div class="section">
+<h2>3️⃣ Required Packages Install</h2>
+
+<div class="code">
+npm install express mongoose cors dotenv
+npm install nodemon --save-dev
+</div>
+
+<p>🔹 express</p>
+<p>Express.js</p>
+<p>👉 Backend server create panna use pannuvom.</p>
+
+<p>🔹 mongoose</p>
+<p>Mongoose</p>
+<p>👉 MongoDB connect panna use pannuvom.</p>
+
+<p>🔹 cors</p>
+<p>Cross Origin Resource Sharing handle panna.</p>
+<p>Frontend different port la irundha thevai.</p>
+
+<p>🔹 dotenv</p>
+<p>Environment variables manage panna.</p>
+
+<p>Example:</p>
+
+<div class="code">
+PORT=5000
+MONGOOSE_URL=mongodb://localhost:27017/movie
+</div>
+
+<p>🔹 nodemon</p>
+<p>Server automatic restart panna use pannuvom.</p>
+
+<p>Without nodemon:<br>
+Every change ku manually restart pannanum.</p>
+</div>
+
+<div class="section">
+<h2>4️⃣ Folder Structure (Most Important Teaching Point)</h2>
+
+<p>Clean architecture romba mukkiyam.</p>
+
+<div class="code">
+movie-backend/
+│
+├── config/
+│     └── db.js
+│
+├── modules/
+│     └── movieDataModule.js
+│
+├── controller/
+│     └── movieController.js
+│
+├── routes/
+│     └── movieRoute.js
+│
+├── .env
+├── server.js
+└── package.json
+</div>
+</div>
+
+<div class="section">
+<h2>5️⃣ Why Separate Folders? (Class la strong ah sollu)</h2>
+
+<p>🔹 config</p>
+<p>Database connection files</p>
+
+<p>🔹 modules</p>
+<p>Schema + Model files</p>
+
+<p>🔹 controller</p>
+<p>Business logic</p>
+
+<p>🔹 routes</p>
+<p>API endpoint definitions</p>
+
+<p>🔹 server.js</p>
+<p>Main entry file</p>
+</div>
+
+<div class="section">
+<h2>6️⃣ Architecture Understanding (Super Important)</h2>
+
+<div class="highlight">
+Frontend → Route → Controller → Model → MongoDB
+</div>
+
+<p>Ithu backend flow.</p>
+</div>
+
+<div class="section">
+<h2>7️⃣ Why Not Everything in One File?</h2>
+
+<ul>
+<li>If everything in one file:</li>
+<li>1000+ lines</li>
+<li>Debug panna kashtam</li>
+<li>Team work impossible</li>
+<li>Maintain panna mudiyathu</li>
+</ul>
+
+<p>So separation of concerns follow pannuvom.</p>
+
+<p>Simple English Sentence:<br>
+We separate folders to keep the backend clean, scalable, and maintainable.</p>
+</div>
+
+<div class="section">
+<h2>8️⃣ Environment File (.env)</h2>
+
+<p>Create:</p>
+
+<div class="code">
+PORT=5000
+MONGOOSE_URL=mongodb://localhost:27017/movie
+</div>
+
+<p>⚠ Important:<br>
+.env GitHub ku push panna koodathu.</p>
+
+<p>So create .gitignore:</p>
+
+<div class="code">
+node_modules
+.env
+</div>
+</div>
+
+<div class="section">
+<h2>9️⃣ Teaching Strategy (Class la ippadi pannu)</h2>
+
+<ul>
+<li>First create empty project</li>
+<li>package.json explain</li>
+<li>Install packages one by one explain</li>
+<li>Folder structure draw panni kaami</li>
+<li>Then only next part ku move aagu</li>
+</ul>
+
+<p><strong>🧠 Part 2 Complete</strong></p>
+
+<p>Foundation + Setup strong aayiduchu.</p>
+</div>
+
+</div>
+
+</body>
+</html>

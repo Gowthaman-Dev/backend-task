@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JSON vs BSON Fundamentals</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 40px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #222;
+    }
+
+    h2 {
+      margin-top: 35px;
+      color: #0b3d91;
+    }
+
+    p {
+      margin: 10px 0;
+    }
+
+    .point {
+      margin-left: 20px;
+    }
+
+    .point::before {
+      content: "✔ ";
+      color: green;
+      font-weight: bold;
+    }
+
+    .arrow::before {
+      content: "👉 ";
+    }
+
+    pre {
+      background: #0f172a;
+      color: #e5e7eb;
+      padding: 18px;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin-top: 15px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      text-align: center;
+    }
+
+    th {
+      background: #0b3d91;
+      color: white;
+    }
+
+    .summary {
+      background: #f1f5f9;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 25px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>JSON vs BSON Fundamentals</h1>
+
+<h2>✅ 1️⃣ What is JSON?</h2>
+
+<p><strong>JSON full form:</strong></p>
+<p>JavaScript Object Notation</p>
+
+<p class="arrow">JSON na data represent panna use pannura format.</p>
+<p class="arrow">Human readable.</p>
+<p class="arrow">Key–Value pair structure.</p>
+
+<p><strong>Example:</strong></p>
+
+<pre>{
+  "name": "Arun",
+  "age": 22,
+  "city": "Chennai"
+}</pre>
+
+<p>"name" → key</p>
+<p>"Arun" → value</p>
+
+<p class="arrow">Idhu JavaScript object madhiri theriyum.</p>
+
+<p><strong>English Sentence:</strong><br>
+JSON is a lightweight data format used to store and exchange data in key-value pairs.</p>
+
+
+<h2>✅ 2️⃣ Why JSON Important?</h2>
+
+<p class="point">Easy to read</p>
+<p class="point">Easy to write</p>
+<p class="point">API response mostly JSON</p>
+<p class="point">Node.js naturally object handle pannum</p>
+
+<p><strong>Example (API Response):</strong></p>
+
+<pre>{
+  "success": true,
+  "message": "User Created"
+}</pre>
+
+<p class="arrow">Thunder Client la paathalum JSON than varum.</p>
+
+
+<h2>✅ 3️⃣ What is BSON?</h2>
+
+<p><strong>BSON full form:</strong></p>
+<p>Binary JavaScript Object Notation</p>
+
+<p class="arrow">JSON oda binary version.</p>
+<p class="arrow">Machine readable format.</p>
+<p class="arrow">MongoDB internally use pannum.</p>
+
+<p><strong>MongoDB data store panna:</strong></p>
+
+<p class="arrow">JSON format la accept pannum</p>
+<p class="arrow">But internally BSON format la convert pannum</p>
+
+<p><strong>English Sentence:</strong><br>
+BSON is a binary-encoded version of JSON used internally by MongoDB for efficient storage.</p>
+
+
+<h2>✅ 4️⃣ Why MongoDB Uses BSON Instead of JSON?</h2>
+
+<p><strong>Good question for class 👇</strong></p>
+
+<p><strong>JSON limitations:</strong></p>
+
+<p>❌ Date type illa (string ah save pannum)</p>
+<p>❌ Binary data store panna mudiyathu</p>
+<p>❌ Limited data types</p>
+
+<p><strong>BSON advantages:</strong></p>
+
+<p class="point">Date type support</p>
+<p class="point">Binary data support</p>
+<p class="point">Faster parsing</p>
+<p class="point">Efficient storage</p>
+
+<p><strong>Example:</strong></p>
+
+<pre>{
+  "name": "Arun",
+  "createdAt": ISODate("2026-02-19")
+}</pre>
+
+<p class="arrow">BSON la date separate data type.</p>
+
+
+<h2>✅ 5️⃣ JSON vs BSON Difference</h2>
+
+<table>
+  <tr>
+    <th>Feature</th>
+    <th>JSON</th>
+    <th>BSON</th>
+  </tr>
+  <tr>
+    <td>Format</td>
+    <td>Text</td>
+    <td>Binary</td>
+  </tr>
+  <tr>
+    <td>Readable</td>
+    <td>Human readable</td>
+    <td>Machine readable</td>
+  </tr>
+  <tr>
+    <td>Speed</td>
+    <td>Normal</td>
+    <td>Faster</td>
+  </tr>
+  <tr>
+    <td>Data Types</td>
+    <td>Limited</td>
+    <td>Extended types</td>
+  </tr>
+  <tr>
+    <td>Used By</td>
+    <td>APIs</td>
+    <td>MongoDB internal</td>
+  </tr>
+</table>
+
+<p><strong>English Sentence:</strong><br>
+JSON is text-based and human-readable, while BSON is binary and optimized for performance.</p>
+
+
+<h2>✅ 6️⃣ How MongoDB Stores Data Internally?</h2>
+
+<p>Flow purinjikanum 👇</p>
+
+<p class="arrow">Node.js la object create pannuvom</p>
+<p class="arrow">MongoDB ku send pannuvom</p>
+<p class="arrow">MongoDB → JSON convert pannum</p>
+<p class="arrow">Internally → BSON ah store pannum</p>
+<p class="arrow">Query panna → BSON → JSON ah convert pannum</p>
+
+<p>So user ku theriyathu.<br>
+Internally than BSON work pannum.</p>
+
+
+<h2>✅ 7️⃣ Important Teaching Point</h2>
+
+<p>Neenga class la ipdi sollunga:</p>
+
+<p class="arrow">“MongoDB JSON madhiri data accept pannum</p>
+<p class="arrow">Aana internally BSON format la store pannum</p>
+<p class="arrow">BSON faster and efficient”</p>
+
+<p>Idhu main concept.</p>
+
+
+<div class="summary">
+<h2>🎯 PART 3 Summary</h2>
+
+<p class="point">JSON = JavaScript Object Notation</p>
+<p class="point">Human readable</p>
+<p class="point">API la mostly JSON</p>
+<p class="point">BSON = Binary JSON</p>
+<p class="point">MongoDB internally BSON use pannum</p>
+<p class="point">BSON → More data types + Faster</p>
+</div>
+
+</div>
+
+</body>
+</html>

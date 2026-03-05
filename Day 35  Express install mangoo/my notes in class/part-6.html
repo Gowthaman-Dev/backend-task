@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Backend Architecture MVC</title>
+<style>
+
+body{
+  margin:0;
+  font-family: Arial, Helvetica, sans-serif;
+  background:#ffffff;
+  color:#111;
+  line-height:1.7;
+}
+
+.container{
+  width:90%;
+  max-width:1100px;
+  margin:auto;
+  padding:40px 20px;
+}
+
+h1{
+  text-align:center;
+  margin-bottom:40px;
+}
+
+.section{
+  border:1px solid #e5e5e5;
+  border-radius:12px;
+  padding:25px;
+  margin-bottom:25px;
+}
+
+.section h2{
+  margin-top:0;
+}
+
+.point{
+  margin:8px 0;
+  padding-left:18px;
+  position:relative;
+}
+
+.point::before{
+  content:"✔";
+  position:absolute;
+  left:0;
+}
+
+.code{
+  background:#f6f6f6;
+  padding:15px;
+  border-radius:8px;
+  overflow-x:auto;
+  margin:15px 0;
+  font-family: monospace;
+}
+
+.table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:15px;
+}
+
+.table th,
+.table td{
+  border:1px solid #ddd;
+  padding:10px;
+  text-align:left;
+}
+
+.summary{
+  background:#fafafa;
+  border:1px solid #e5e5e5;
+  padding:20px;
+  border-radius:12px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>PART 6 – Backend Architecture & MVC</h1>
+
+<div class="section">
+<h2>✅ 1️⃣ Backend Architecture na enna?</h2>
+
+<p>Backend la namma code ellam random ah write panna koodathu ❌</p>
+<p>Structure ah organize pannanum ✔</p>
+
+<p><b>Normal backend structure:</b></p>
+
+<div class="code">
+project/
+│
+├── config/
+├── controllers/
+├── models/
+├── routes/
+├── server.js
+└── .env
+</div>
+
+<p>👉 Idhu than clean architecture.</p>
+
+<p><b>English Sentence:</b><br>
+A backend architecture organizes code into separate layers for better structure and maintainability.</p>
+</div>
+
+<div class="section">
+<h2>✅ 2️⃣ Route na enna?</h2>
+
+<p>Route na:</p>
+
+<p class="point">Client request receive pannura place</p>
+<p class="point">URL handle pannum</p>
+
+<p><b>Example:</b></p>
+
+<div class="code">
+app.get("/users", getUsers)
+</div>
+
+<p>Inga:</p>
+<p>"/users" → Route path</p>
+<p>getUsers → Controller function</p>
+
+<p>Client → Route → Controller</p>
+
+<p><b>English Sentence:</b><br>
+A route handles incoming HTTP requests and directs them to the correct function.</p>
+</div>
+
+<div class="section">
+<h2>✅ 3️⃣ Controller na enna?</h2>
+
+<p>Controller:</p>
+
+<p class="point">Business logic handle pannum</p>
+<p class="point">Database kitta pesum</p>
+<p class="point">Response send pannum</p>
+
+<p><b>Example:</b></p>
+
+<div class="code">
+export const getUsers = async (req, res) => {
+   const users = await User.find()
+   res.json(users)
+}
+</div>
+
+<p><b>Controller job:</b></p>
+
+<p class="point">Data process</p>
+<p class="point">DB call</p>
+<p class="point">Response send</p>
+
+<p><b>English Sentence:</b><br>
+A controller contains the business logic and interacts with the database.</p>
+</div>
+
+<div class="section">
+<h2>✅ 4️⃣ Model na enna?</h2>
+
+<p>Model:</p>
+
+<p class="point">Database structure represent pannum</p>
+<p class="point">Schema base ah irukum</p>
+<p class="point">Mongoose model use pannuvom</p>
+
+<p><b>Example:</b></p>
+
+<div class="code">
+const User = mongoose.model("User", userSchema)
+</div>
+
+<p>Route → Controller → Model → MongoDB</p>
+</div>
+
+<div class="section">
+<h2>✅ 5️⃣ Route, Controller & DB Direct Relation Illa Concept</h2>
+
+<p>Neenga note pannunga Gowtham:</p>
+
+<p class="point">Route direct ah DB kitta pesa koodathu ❌</p>
+<p class="point">Route → Controller → Model → DB</p>
+
+<p><b>Why?</b></p>
+
+<p class="point">Clean code</p>
+<p class="point">Easy maintain</p>
+<p class="point">Large project scale panna easy</p>
+<p class="point">Debug easy</p>
+
+<p><b>Bad example ❌</b></p>
+
+<div class="code">
+app.get("/users", async (req,res)=>{
+   const users = await mongoose.find()
+})
+</div>
+
+<p><b>Good example ✔</b></p>
+
+<p>Route file:</p>
+
+<div class="code">
+router.get("/users", getUsers)
+</div>
+
+<p>Controller file:</p>
+
+<div class="code">
+export const getUsers = async (req,res)=>{
+   const users = await User.find()
+   res.json(users)
+}
+</div>
+
+<p>👉 Separation of concerns.</p>
+
+<p><b>English Sentence:</b><br>
+Routes should not directly access the database; controllers handle the business logic.</p>
+</div>
+
+<div class="section">
+<h2>✅ 6️⃣ Config Folder Purpose</h2>
+
+<p>Config folder la:</p>
+
+<p class="point">Database connection logic irukum</p>
+<p class="point">Environment setup irukum</p>
+
+<p><b>Example:</b></p>
+
+<div class="code">
+config/db.js
+</div>
+
+<p><b>Your code:</b></p>
+
+<div class="code">
+import mongoose from "mongoose"
+
+const connectDB = async () => {
+   try {
+      await mongoose.connect(process.env.MONGO_URL)
+      console.log("Database Connected Successfully")
+   } catch(error) {
+      console.log("Something Error")
+   }
+}
+
+export default connectDB
+</div>
+
+<p><b>Why separate file?</b></p>
+
+<p class="point">Reusable</p>
+<p class="point">Clean structure</p>
+<p class="point">Large project manage easy</p>
+
+<p><b>English Sentence:</b><br>
+The config folder is used to manage configuration like database connections separately.</p>
+</div>
+
+<div class="section">
+<h2>✅ 7️⃣ Full Flow Diagram (Very Important for Class)</h2>
+
+<div class="code">
+Client (Thunder Client)
+        ↓
+Route
+        ↓
+Controller
+        ↓
+Model
+        ↓
+MongoDB
+        ↓
+Response back to Client
+</div>
+</div>
+
+<div class="section">
+<h2>✅ 8️⃣ MVC Pattern Basic Idea</h2>
+
+<p><b>MVC = Model View Controller</b></p>
+
+<p>Backend la:</p>
+
+<p class="point">Model → Database structure</p>
+<p class="point">Controller → Logic</p>
+<p class="point">Route → Entry point</p>
+
+<p>View mostly frontend side.</p>
+</div>
+
+<div class="summary">
+<h2>🎯 PART 6 Summary</h2>
+
+<p class="point">Backend structure important</p>
+<p class="point">Route → Request receive pannum</p>
+<p class="point">Controller → Logic handle pannum</p>
+<p class="point">Model → DB structure represent pannum</p>
+<p class="point">Config → DB connection store pannum</p>
+<p class="point">Route direct DB access panna koodathu</p>
+<p class="point">MVC pattern follow pannalam</p>
+</div>
+
+</div>
+
+</body>
+</html>

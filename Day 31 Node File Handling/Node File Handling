@@ -1,0 +1,64 @@
+*Its is use to create, read, update, delete 
+*manage file and directly 
+*Node can access system level resousces so it makes fls
+*its is synrous and aysnounes more are here 
+*asysingner is pefer for 
+
+
+=>create file 
+fs.writeFile(filename,data,callbackfunction)
+
+=>ReadFile
+fs.readFile(filename,Encoding,callbackFunc)
+
+=>update 
+fs.append(filename,data,callbackfunct)
+
+
+*UTF - *binary number *asas - check later
+
+--------------------------------------------------------------
+
+path.js
+
+the path modules help in handling and transforming file and directy path safty
+
+relative path
+absolative path
+
+agross the different path format - windows ,linex , path ensure comparablrtive and resolue absoluative path
+
+and prevent hard coding file prevendly 
+
+
+=>join 
+path.join(path1,path2)
+
+
+=>absolute path
+path.resolve(path)
+
+=>Take the file extension 
+path.extname(filename)
+
+=>Take the Filename
+path.basename(filename)
+
+-------------------------------------------------------------------------
+
+os.js
+
+the os module provides information about the operating system were node.js is running 
+
+it help developer retries system details like cpu arctituure platform memory uptime and host name 
+
+the module is usefull for system monitering tools and backend dynassies	it does not modifty the os but provide read only information 
+
+
+
+============================
+
+=>Install Extensions:
+Thunder Client 
+
+postman app also install

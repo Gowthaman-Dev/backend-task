@@ -1,0 +1,82 @@
+Node is a JavaScript runtime environment -file process and logic and mechine - then node is use to run js code outside of browser
+
+*its is mainly for build a server side application 
+
+*its is desiged to build fast ,scalable ,event dreven ,non - blocking driven application.
+
+*node uses the single thread architeeer 	which make its live and effecient for handling muliple client request without create mulit thread .
+
+------------------------------------
+
+what is different between js and node
+
+------------------------------------
+
+node server la use pannurathuku but node la iruka furthure kammi 
+yappudi js react libray use pannutho other librey ya use pannutho 
+athu mattam than node express sa use pannuthu 
+
+-------------------------------------
+
+blocking , non - blocking 
+
+=>blocking i/o - when one request is process then next request must wait until it finish 
+
+
+=>non - blocking node does not wait	it register the task then move to the next request 
+
+
+-------------------------------------
+
+server means files 
+
+------------------------------------
+
+Server 
+Pote 
+Route 
+middle
+ver 
+request 
+responces
+
+controller
+request 
+responces two object  json
+
+------------------------------------
+
+HTTP - ORM method check later 
+
+API - post , get , put , patch , delete  - ithuku peru Rest API
+
+---------------------------------
+
+fetch - to get or send the data to the server 
+
+fetch - upgrad version is axius 	 
+
+----------------------------------
+
+core Node bulit in Modules;
+
+HTTP - set the server
+file system - fs
+path system - path
+os system  - os 
+
+process - env
+
+
+crypto
+events
+
+Type of node modules -
+1. build-in modules (come with node)
+2. user-Definded Modules(we build)
+3. thired party modules - express mangoess dotenv core bcrypt jwt multer
+
+
+-------------------------------------
+
+  

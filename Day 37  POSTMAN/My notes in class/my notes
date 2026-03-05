@@ -1,0 +1,137 @@
+MongoDb
+ORM - ODM
+mongoose - schema - modle
+
+movieData
+movieName
+ProducerName
+DirectorName
+accterName
+acctressName
+MovieType
+movieLanguage
+status
+RealingDate
+createdBy    -  
+updatedBy    - 
+
+
+-------------------------------
+
+*movieapp.use(cors()) <- data va anupunathan intha cors thevaipadum 
+*movieapp.use(express.json) <-mongodb ithu rendum irunthathan connect agum nu illa - http requset pass panna mattum than podanum 
+
+
+--------------------------------------
+
+
+module create panna sechema ready pannaum 
+
+sechema vachithan module ready panna mudiyum 
+
+
+sechema ready panna constraor venum  atha mongoose la irunthu yedukanum ->import mongoose from "moogoose"
+
+new mongoose.Schema({
+	
+},{timestamps:true})
+
+
+=>mongoose.model("")
+
+
+---------------------------------------
+
+route mounting pannanum 
+
+->movieapp.use("/api/movieData",)<-handler kudukanum soo route file venum so cretae 
+
+->import express from 'express'
+
+const movie = express.Router()
+
+=>movie.post('/create',)<-handler kudukanum inthu yaaru controller soo create file 
+
+->export const createData = async(req,res)=>{
+
+console.log(req)
+	
+}
+
+----------------------------------------------------------
+
+ippo data va get panna poran 
+-> so data va yeduka root set pannanum 
+export const getData = async(req,res)=>{
+    try {
+        const getdata = await movieDataModules.find()
+        if(getdata){
+            return  res.status(200).json({mydatas:getdata})
+        }
+    }  catch (error) {
+        console.log(`something error`,error);
+
+        res.status(404).json({msg:"Something Error",error})
+        
+    } 
+}
+
+
+
+movieroute.get("/get",getData)
+
+
+
+---------------------------------------------------------------
+
+
+id ya base panni data va yedukanum na 
+so paramas la pass panna poran 
+
+
+export const getbyid = async(req,res)=>{
+    try {
+
+        //  console.log(req);
+
+        const {userid} = req.params
+
+        const getbyid = await movieDataModules.findById(userid)
+        if (getbyid) {
+            res.status(200).json({getbyid})
+        }
+    } catch (error) {
+      console.log(`something error`,error);
+
+        res.status(404).json({msg:"Something Error",error})
+        
+    } 
+}
+
+
+movieroute.get("/getid/:userid",getbyid)
+
+
+=>id base panni daat vedukurathu 
+
+
+
+-----------------------------------------------------------------------------------------------------
+
+
+oru data mattum yeduka
+
+res.status(200).json({getbyid:getbyid.MovieType})
+
+
+---------------------------------------------------------------------------------------------------
+
+catergory wish select pannura mattam 
+
+        const filter = getdata.filter((e)=>e.movieName === "Forever You")
+        if(getdata){
+            return  res.status(200).json({mydatas:filter}
+
+
+------------------------------------
+

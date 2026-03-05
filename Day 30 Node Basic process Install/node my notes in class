@@ -1,0 +1,24 @@
+node - build in than http 
+import export  - 
+Named Export:
+export default app :
+es6+ - feautures 
+backend
+server set up HTTP
+FS - file system
+es modules 
+Required method is old but company are  js la common js method nu meaning import export use pannuna esmodules method nu meaning 
+
+
+const app = http.createServer()
+
+
+console.log(app)
+
+
+app.listen(5000,()=>{
+	console.log("server is on : in the 5000")
+})
+
+
+its a http server create process 

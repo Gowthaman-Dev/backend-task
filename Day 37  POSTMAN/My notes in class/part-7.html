@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  background:#f4f6f9;
+  margin:0;
+  padding:40px;
+  color:#1f2937;
+  line-height:1.8;
+}
+.container{
+  max-width:1000px;
+  margin:auto;
+}
+h1{
+  text-align:center;
+  color:#111827;
+  margin-bottom:30px;
+}
+.card{
+  background:#ffffff;
+  padding:25px;
+  margin-bottom:25px;
+  border-radius:10px;
+  border:1px solid #e5e7eb;
+}
+.card h2{
+  color:#2563eb;
+  margin-bottom:15px;
+}
+ul{
+  padding-left:25px;
+}
+.code{
+  background:#f3f4f6;
+  padding:15px;
+  border-radius:8px;
+  font-family:monospace;
+  white-space:pre-wrap;
+  margin-top:10px;
+}
+.flow{
+  background:#eef2ff;
+  padding:20px;
+  border-radius:8px;
+  font-family:monospace;
+  white-space:pre-wrap;
+}
+.table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:15px;
+}
+.table th, .table td{
+  border:1px solid #e5e7eb;
+  padding:10px;
+  text-align:left;
+}
+.table th{
+  background:#f9fafb;
+}
+.highlight{
+  background:#e0f2fe;
+  padding:15px;
+  border-left:4px solid #0284c7;
+  border-radius:8px;
+  margin-bottom:30px;
+  font-weight:500;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>✅ Part 7 – Model Creation</h1>
+
+<div class="highlight">
+mongoose.model("movieData", movieSchema)
+
+இது ரொம்ப முக்கியமான step 🔥  
+Schema புரிஞ்ச பிறகு next powerful concept = Model
+</div>
+
+<div class="card">
+<h2>🔹 1️⃣ What is Model?</h2>
+
+<p>👉 Model = Controller for Collection</p>
+
+<p>Simple definition:</p>
+
+<p>Model என்பது MongoDB collection-ஐ handle பண்ணும் object.</p>
+
+<p>Schema structure define பண்ணும்.  
+Model அந்த structure-ஐ use பண்ணி DB-ல CRUD operations பண்ணும்.</p>
+</div>
+
+<div class="card">
+<h2>🔹 2️⃣ Why Model After Schema?</h2>
+
+<div class="flow">
+Schema → Model → Collection
+</div>
+
+<p>Reason:</p>
+
+<ul>
+<li>Schema → Structure மட்டும் define பண்ணும்</li>
+<li>Model → DB operations execute பண்ணும்</li>
+</ul>
+
+<p>Schema alone use பண்ண முடியாது.</p>
+
+<p>❌ Wrong:</p>
+
+<div class="code">
+movieSchema.find()   // ❌ error
+</div>
+
+<p>✅ Correct:</p>
+
+<div class="code">
+Movie.find()         // ✅ working
+</div>
+
+<p>ஏன்?</p>
+
+<p>Because Model only has DB methods</p>
+</div>
+
+<div class="card">
+<h2>🔹 3️⃣ mongoose.model() என்ன பண்ணுது?</h2>
+
+<div class="code">
+const Movie = mongoose.model("movieData", movieSchema)
+</div>
+
+<p>Internally என்ன நடக்குது?</p>
+
+<ul>
+<li>mongoose schema-ஐ எடுத்துக்குது</li>
+<li>"movieData" என்ற collection name உருவாக்குது</li>
+<li>MongoDB-ல் collection create ஆகுது</li>
+<li>CRUD methods attach ஆகுது</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>🔹 4️⃣ Model Acts as Bridge 🔥</h2>
+
+<p>Architecture clearா பாரு:</p>
+
+<div class="flow">
+Application (Node/Express)
+        ↓
+        Model
+        ↓
+     MongoDB
+</div>
+
+<p>Explanation:</p>
+
+<ul>
+<li>Application → Request அனுப்பும்</li>
+<li>Model → Query convert பண்ணும்</li>
+<li>MongoDB → Data store / retrieve பண்ணும்</li>
+</ul>
+
+<p>👉 Model தான் Translator.</p>
+</div>
+
+<div class="card">
+<h2>🔹 5️⃣ Example Full Code</h2>
+
+<div class="code">
+import mongoose from "mongoose"
+
+const movieSchema = new mongoose.Schema({
+  name: String,
+  rating: Number
+})
+
+const Movie = mongoose.model("movieData", movieSchema)
+
+export default Movie
+</div>
+</div>
+
+<div class="card">
+<h2>🔹 6️⃣ Collection Name Logic</h2>
+
+<div class="code">
+mongoose.model("movieData", movieSchema)
+</div>
+
+<p>MongoDBல collection name automatically:</p>
+
+<div class="code">
+moviedatas
+</div>
+
+<p>👉 Mongoose:</p>
+
+<ul>
+<li>Lowercase ஆக்கும்</li>
+<li>Plural ஆக்கும்</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>🔹 7️⃣ Model Methods (Power Area 💪)</h2>
+
+<p>Model use பண்ணி:</p>
+
+<div class="code">
+Movie.create()
+Movie.find()
+Movie.findById()
+Movie.findByIdAndUpdate()
+Movie.findByIdAndDelete()
+</div>
+
+<p>All DB operations model மூலம் தான்.</p>
+</div>
+
+<div class="card">
+<h2>🔥 Real Life Analogy</h2>
+
+<table class="table">
+<tr>
+<th>Concept</th>
+<th>Real Life</th>
+</tr>
+<tr>
+<td>Schema</td>
+<td>Building Blueprint</td>
+</tr>
+<tr>
+<td>Model</td>
+<td>Building Contractor</td>
+</tr>
+<tr>
+<td>Collection</td>
+<td>Building</td>
+</tr>
+<tr>
+<td>Document</td>
+<td>Room</td>
+</tr>
+</table>
+
+<p>Blueprint மட்டும் இருந்தா building வராது.  
+Contractor (Model) இருந்தா தான் building உருவாகும்.</p>
+</div>
+
+<div class="card">
+<h2>🎯 Final Architecture View</h2>
+
+<div class="flow">
+Client
+  ↓
+Route
+  ↓
+Controller
+  ↓
+Model
+  ↓
+MongoDB
+</div>
+</div>
+
+<div class="card">
+<h2>🧠 One Line English Definition:</h2>
+
+<p>A Model is a wrapper around a MongoDB collection that allows the application to interact with the database using the defined schema.</p>
+
+</div>
+
+</div>
+
+</body>
+</html>

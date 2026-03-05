@@ -1,0 +1,23 @@
+two information na insert panna poran with viscrept ensreption - it la app neeye pannalum yaru password dum pakka kudathu  soo ensrcpted method la use pannuvanga 
+
+thrid party libray bcrypt is a password hashing library used to securely store user passwords in applications. incert of saving the actuall password in the database 
+
+password da database la store pannurathuku pathila - Bcrypt convert into a has format using the jiptographic algoritham 
+
+this ensure that event if the database is comparmised attacker cant easly retrive the orginall password 
+
+Bcrypt is specially desiged for password hassing andincluding buildin production mecanisam like  salting and computationall kallpektar 
+
+
+A value added to the password before hassing 
+
+salt rounds - 10 kudupangala meaning case factor higher number more scrure and increasing processing time 
+
+Bcrypt - password hashing library used to securely store user passwords in applications.
+
+bcrypt.hash(p,sr) - plain password  into hashed password.
+
+bcrypt.campare()  -
+
+
+salt Rounds

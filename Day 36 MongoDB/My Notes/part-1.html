@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DATABASE + ORM + MONGODB BASIC FOUNDATION</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:"Poppins", Arial, Helvetica, sans-serif;
+    background:#ffffff;
+    color:#1f2937;
+    line-height:1.8;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:30px 20px 60px;
+}
+
+/* HEADER */
+.header{
+    background:#2563eb;
+    color:white;
+    padding:26px;
+    border-radius:14px;
+    text-align:center;
+}
+
+.header h1{
+    margin:0;
+    font-size:28px;
+}
+
+.sub{
+    margin-top:8px;
+    font-size:15px;
+    opacity:0.95;
+}
+
+/* CARD */
+.card{
+    background:#ffffff;
+    margin-top:22px;
+    padding:24px;
+    border-radius:14px;
+    border:1px solid #e5e7eb;
+}
+
+h2{
+    margin-top:0;
+    color:#2563eb;
+    font-size:21px;
+}
+
+p, li{
+    font-size:16px;
+}
+
+ul{
+    padding-left:22px;
+}
+
+/* TABLE */
+.table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:14px;
+    font-size:15px;
+}
+
+.table th{
+    background:#2563eb;
+    color:white;
+    padding:10px;
+    text-align:left;
+}
+
+.table td{
+    border:1px solid #e5e7eb;
+    padding:10px;
+}
+
+/* CODE */
+.code{
+    background:rgb(46, 26, 26);
+    color:white;
+    padding:16px;
+    border-radius:10px;
+    margin-top:10px;
+    font-family:Consolas, monospace;
+    font-size:14px;
+    border:1px solid #e5e7eb;
+    overflow:auto;
+}
+
+/* FLOW */
+.flow{
+    margin-top:18px;
+    background:#f1f5f9;
+    padding:16px;
+    border-radius:10px;
+    text-align:center;
+    font-weight:600;
+    font-size:17px;
+    color:#1e3a8a;
+    border:1px solid #e2e8f0;
+}
+
+/* TIP */
+.tip{
+    background:#fff7ed;
+    border:1px solid #fed7aa;
+    padding:20px;
+    border-radius:12px;
+    font-weight:600;
+    font-size:16px;
+    margin-top:24px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+<h1>📘 PART 1 – DATABASE + ORM + MONGODB BASIC FOUNDATION</h1>
+<div class="sub">(இந்த part மட்டும் class ல 30–40 mins போதும் 🔥)</div>
+</div>
+
+<div class="card">
+<h2>1️⃣ What is Database?</h2>
+<p>👉 Database என்றால் என்ன?</p>
+<p>Database என்பது data store பண்ணும் இடம்.</p>
+
+<p><b>Example:</b></p>
+<ul>
+<li>• User name</li>
+<li>• Email</li>
+<li>• Age</li>
+<li>• Password</li>
+</ul>
+
+<p>இவை எல்லாம் database ல store ஆகும்.</p>
+</div>
+
+<div class="card">
+<h2>2️⃣ SQL vs MongoDB Comparison</h2>
+
+<table class="table">
+<tr>
+<th>SQL (MySQL)</th>
+<th>MongoDB</th>
+</tr>
+<tr><td>Database</td><td>Database</td></tr>
+<tr><td>Table</td><td>Collection</td></tr>
+<tr><td>Row</td><td>Document</td></tr>
+<tr><td>Column</td><td>Field</td></tr>
+<tr><td>Primary Key</td><td>_id</td></tr>
+</table>
+
+<p><b>Example:</b></p>
+
+<p><b>SQL:</b><br>
+Table: Users<br>
+Row: 1<br>
+Column: name, email</p>
+
+<p><b>MongoDB:</b><br>
+Collection: users<br>
+Document:</p>
+
+<div class="code">
+{
+ name: "Gowtham",
+ email: "gowtham@gmail.com"
+}
+</div>
+</div>
+
+<div class="card">
+<h2>3️⃣ ORM என்றால் என்ன?</h2>
+<p>👉 ORM = Object Relational Mapping</p>
+<p>ORM என்பது:</p>
+<p>👉 Database உடன் interact செய்ய உதவும் tool.</p>
+<p>MongoDB க்கு ORM என்ன?</p>
+<p>👉 Mongoose</p>
+<p>Mongoose ஒரு ODM (Object Document Mapper)</p>
+</div>
+
+<div class="card">
+<h2>4️⃣ ORM Built-in Methods</h2>
+
+<table class="table">
+<tr>
+<th>SQL</th>
+<th>Mongoose</th>
+</tr>
+<tr><td>INSERT</td><td>create()</td></tr>
+<tr><td>SELECT</td><td>find()</td></tr>
+<tr><td>SELECT BY ID</td><td>findById()</td></tr>
+<tr><td>UPDATE</td><td>findByIdAndUpdate()</td></tr>
+<tr><td>DELETE</td><td>findByIdAndDelete()</td></tr>
+</table>
+
+<p>🔹 create()</p>
+<div class="code">userModel.create(data)</div>
+<p>👉 Insert data</p>
+
+<p>🔹 find()</p>
+<div class="code">userModel.find()</div>
+<p>👉 Get all data</p>
+
+<p>🔹 findById()</p>
+<div class="code">userModel.findById(id)</div>
+<p>👉 Get single document</p>
+
+<p>🔹 findByIdAndUpdate()</p>
+<div class="code">userModel.findByIdAndUpdate(id, data)</div>
+<p>👉 Update document</p>
+
+<p>🔹 findByIdAndDelete()</p>
+<div class="code">userModel.findByIdAndDelete(id)</div>
+<p>👉 Delete document</p>
+</div>
+
+<div class="card">
+<h2>5️⃣ What is Schema?</h2>
+<p>👉 Schema என்றால் என்ன?</p>
+<p>Schema = Blueprint of Collection</p>
+
+<p>Schema சொல்வது:</p>
+<ul>
+<li>✔ என்ன field allowed</li>
+<li>✔ என்ன type data</li>
+<li>✔ validation என்ன</li>
+<li>✔ required or not</li>
+<li>✔ default value</li>
+</ul>
+
+<p><b>Your Schema Example:</b></p>
+
+<div class="code">
+const userSchema = new mongoose.Schema({
+ userName:{type:String,required:true},
+ userEmail:{type:String,required:true,unique:true},
+ userAge:{type:Number,required:true,min:18}
+},{timestamps:true})
+</div>
+
+<table class="table">
+<tr><th>Field</th><th>Meaning</th></tr>
+<tr><td>type:String</td><td>string only</td></tr>
+<tr><td>required:true</td><td>compulsory</td></tr>
+<tr><td>unique:true</td><td>duplicate not allowed</td></tr>
+<tr><td>min:18</td><td>age must be 18+</td></tr>
+<tr><td>timestamps:true</td><td>createdAt, updatedAt auto add</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>6️⃣ What is Model?</h2>
+<p>👉 Model என்றால் என்ன?</p>
+<p>Model என்பது:</p>
+<p>Schema ல இருந்து create ஆகும்.</p>
+
+<div class="code">
+const userModel = mongoose.model('userDatas',userSchema)
+</div>
+
+<p>👉 userDatas = collection name<br>
+👉 userSchema = structure</p>
+
+<p><b>Model Meaning:</b></p>
+<ul>
+<li>🔹 Database collection க்கு reference</li>
+<li>🔹 CRUD operations செய்ய use ஆகும்</li>
+<li>🔹 ORM methods model குள்ள தான் இருக்கும்</li>
+</ul>
+
+<p>👉 "Model is a wrapper around MongoDB collection"</p>
+</div>
+
+<div class="card">
+<h2>7️⃣ DB Connection Flow (Very Important)</h2>
+
+<p><b>Step 1 – Install</b></p>
+<div class="code">npm install mongoose</div>
+
+<p><b>Step 2 – Create DB Config</b></p>
+<div class="code">
+import mongoose from "mongoose";
+
+const ConnectDb = async () => {
+ await mongoose.connect(process.env.MONGO_URL)
+ console.log("DB Connected");
+}
+
+export default ConnectDb;
+</div>
+
+<p><b>Step 3 – Use in Server</b></p>
+<div class="code">
+import ConnectDb from './config/db.js'
+ConnectDb()
+</div>
+
+<div class="flow">
+🔥 Complete Flow Diagram (Teach this in board)<br><br>
+Client → Route → Controller → Model → Schema → MongoDB
+</div>
+</div>
+
+<div class="card">
+<h2>8️⃣ Controller Explanation</h2>
+
+<p><b>Example:</b></p>
+
+<div class="code">
+export const addData = async(req,res)=>{
+ const { userName, userEmail, userAge } = req.body
+ const add = await userModel.create({userName, userEmail, userAge})
+ res.status(201).json({msg:"successfully added"})
+}
+</div>
+
+<p><b>Flow:</b></p>
+<ul>
+<li>🔹 req.body → client send data</li>
+<li>🔹 destructure</li>
+<li>🔹 model.create()</li>
+<li>🔹 response send</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>9️⃣ Why Schema Important?</h2>
+
+<p><b>Without schema:</b></p>
+<ul>
+<li>❌ Random data store ஆகும்</li>
+<li>❌ Type mismatch வரும்</li>
+<li>❌ Data consistency போயிடும்</li>
+</ul>
+
+<p><b>Schema use பண்ணினால்:</b></p>
+<ul>
+<li>✔ Validation</li>
+<li>✔ Structure</li>
+<li>✔ Clean data</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>🎯 How To Teach Tomorrow (Structure)</h2>
+
+<ul>
+<li>🔹 Step 1: Explain Database vs MongoDB mapping</li>
+<li>🔹 Step 2: Explain ORM</li>
+<li>🔹 Step 3: Explain Schema</li>
+<li>🔹 Step 4: Explain Model</li>
+<li>🔹 Step 5: Explain CRUD methods</li>
+<li>🔹 Step 6: Explain Flow Diagram</li>
+</ul>
+</div>
+
+<div class="tip">
+🔥 Important Teaching Tip:<br><br>
+Board ல இப்படி draw பண்ணு:<br><br>
+Schema → Model → Controller → Route → Server
+</div>
+
+</div>
+
+</body>
+</html>

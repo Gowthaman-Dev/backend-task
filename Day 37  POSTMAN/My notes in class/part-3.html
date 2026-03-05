@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>🔥 PART 3 – Express Server Setup + Server Lifecycle</title>
+<style>
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f9fafb;
+    color:#1f2937;
+    line-height:1.8;
+}
+.header{
+    background:#1e3a8a;
+    color:#ffffff;
+    padding:25px;
+    text-align:center;
+    font-size:26px;
+    font-weight:bold;
+}
+.container{
+    width:90%;
+    max-width:1100px;
+    margin:30px auto;
+}
+.section{
+    background:#ffffff;
+    padding:22px;
+    margin-bottom:25px;
+    border-radius:8px;
+    border:1px solid #e5e7eb;
+}
+.section h2{
+    color:#1e3a8a;
+    margin-bottom:12px;
+}
+.code{
+    background:#f3f4f6;
+    padding:12px;
+    border-radius:6px;
+    font-family:monospace;
+    margin-top:10px;
+    white-space:pre-wrap;
+}
+.highlight{
+    background:#e0f2fe;
+    padding:12px;
+    border-left:5px solid #0284c7;
+    margin-top:15px;
+}
+ul{
+    margin-left:20px;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+🔥 PART 3 – Express Server Setup + Server Lifecycle (Core Backend Start)
+</div>
+
+<div class="container">
+
+<div class="section">
+<p><strong>Gowtham,</strong><br>
+Inga dhan real backend start agudhu.<br>
+Indha part purinjiduchuna nee full backend confidently explain pannalam.</p>
+
+<h2>1️⃣ Express Import & App Creation</h2>
+
+<div class="code">
+import express from 'express'
+
+const movie = express()
+</div>
+
+<p>🔹 express import pannuradhu</p>
+
+<p>Express.js</p>
+
+<p>Express is a Node.js web framework.</p>
+
+<p>👉 Server create panna<br>
+👉 API handle panna<br>
+👉 HTTP request handle panna</p>
+
+<p>🔹 const movie = express()</p>
+
+<p>Idhu enna?</p>
+
+<p>👉 express() call panna oru application object create aagum.<br>
+👉 Ithu dhaan namma main server instance.</p>
+
+<p>Simple English Sentence:<br>
+Calling express() creates the main server application instance.</p>
+</div>
+
+<div class="section">
+<h2>2️⃣ dotenv Setup (Environment Variables Load)</h2>
+
+<div class="code">
+import dotenv from 'dotenv'
+dotenv.config()
+</div>
+
+<p>🔹 Why dotenv.config() must be first?</p>
+
+<p>Because:</p>
+
+<ul>
+<li>It loads .env file</li>
+<li>process.env.PORT</li>
+<li>process.env.MONGOOSE_URL</li>
+</ul>
+
+<p>If config call pannaama irundha:<br>
+process.env undefined varum.</p>
+</div>
+
+<div class="section">
+<h2>3️⃣ Database Connect Before Server Start</h2>
+
+<div class="code">
+import connectdb from './config/db.js'
+
+connectdb()
+</div>
+
+<p>⚠ Important Teaching Point:</p>
+
+<p>Why connectdb() before listen()?</p>
+
+<p>Because:</p>
+
+<ul>
+<li>DB connect aagala na</li>
+<li>Server start aana use illa</li>
+<li>First database ready aaganum</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>4️⃣ Middleware Setup (Short Intro – Deep next part la)</h2>
+
+<div class="code">
+movie.use(cors())
+movie.use(express.json())
+</div>
+
+<p>Ippo detail ah pogala<br>
+Next part la deep explain panrom.</p>
+
+<p>But basic ah:</p>
+
+<p>cors() → frontend access allow<br>
+express.json() → request body parse</p>
+</div>
+
+<div class="section">
+<h2>5️⃣ Route Mounting</h2>
+
+<div class="code">
+movie.use("/api/movie", movieroute)
+</div>
+
+<p>👉 All movie related APIs start with:</p>
+
+<div class="code">
+/api/movie
+</div>
+
+<p>Example:</p>
+
+<div class="code">
+/api/movie/create
+/api/movie/get
+</div>
+
+<p>Idhu clean API architecture.</p>
+</div>
+
+<div class="section">
+<h2>6️⃣ Server Listen</h2>
+
+<div class="code">
+const PORT = process.env.PORT || 3000
+
+movie.listen(PORT, () => {
+    console.log(`server connected successfully http://localhost:${PORT}`);
+})
+</div>
+
+<p>🔹 process.env.PORT || 3000</p>
+
+<p>Meaning:</p>
+
+<ul>
+<li>If .env PORT irundha use pannu</li>
+<li>Illana 3000 use pannu</li>
+</ul>
+
+<p>🔹 movie.listen()</p>
+
+<p>Idhu dhaan server start pannum line.</p>
+
+<p>Server listen panna:</p>
+
+<p>👉 Browser request accept pannum<br>
+👉 API request handle pannum</p>
+</div>
+
+<div class="section">
+<h2>7️⃣ Full server.js Structure (Clean Version)</h2>
+
+<div class="code">
+import express from 'express'
+import dotenv from 'dotenv'
+import cors from 'cors'
+import connectdb from './config/db.js'
+import movieroute from './routes/movieRoute.js'
+
+dotenv.config()
+
+connectdb()
+
+const movie = express()
+
+movie.use(cors())
+movie.use(express.json())
+
+movie.use("/api/movie", movieroute)
+
+const PORT = process.env.PORT || 3000
+
+movie.listen(PORT, () => {
+    console.log(`server connected successfully http://localhost:${PORT}`);
+})
+</div>
+</div>
+
+<div class="section">
+<h2>8️⃣ Server Lifecycle (Very Important Teaching Point)</h2>
+
+<p>Class la ippadi explain pannu:</p>
+
+<ul>
+<li>Step 1:</li>
+<li>Node start</li>
+<li>Step 2:</li>
+<li>dotenv load</li>
+<li>Step 3:</li>
+<li>Database connect</li>
+<li>Step 4:</li>
+<li>Middleware setup</li>
+<li>Step 5:</li>
+<li>Route register</li>
+<li>Step 6:</li>
+<li>Server listen</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>9️⃣ Request Flow (Architecture View)</h2>
+
+<p>When frontend hit:</p>
+
+<div class="code">
+http://localhost:5000/api/movie/create
+</div>
+
+<p>Flow:</p>
+
+<div class="highlight">
+Client → Express → Route → Controller → Model → MongoDB → Response → Client
+</div>
+
+<p>Ithu dhaan full backend data flow.</p>
+</div>
+
+<div class="section">
+<h2>🔥 Common Mistakes Students Pannuvanga</h2>
+
+<ul>
+<li>dotenv.config() marandhuduvanga</li>
+<li>connectdb() listen kapparam poduvanga</li>
+<li>PORT hardcode pannuvanga</li>
+<li>import path wrong poduvanga</li>
+</ul>
+
+<p>Indha mistakes class la mention pannina nalla impact irukum.</p>
+</div>
+
+<div class="section">
+<h2>🎯 Teaching Strategy</h2>
+
+<ul>
+<li>First empty server create pannu</li>
+<li>Only listen show pannu</li>
+<li>Then dotenv add pannu</li>
+<li>Then db connect add pannu</li>
+<li>Then middleware add pannu</li>
+<li>Then route mount pannu</li>
+<li>Step by step build panna clarity varum.</li>
+</ul>
+</div>
+
+</div>
+
+</body>
+</html>

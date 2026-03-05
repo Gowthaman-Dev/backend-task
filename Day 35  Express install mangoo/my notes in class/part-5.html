@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mongoose ODM Fundamentals</title>
+<style>
+
+body{
+  margin:0;
+  font-family: Arial, Helvetica, sans-serif;
+  background:#ffffff;
+  color:#111;
+  line-height:1.7;
+}
+
+.container{
+  width:90%;
+  max-width:1100px;
+  margin:auto;
+  padding:40px 20px;
+}
+
+h1{
+  text-align:center;
+  margin-bottom:40px;
+}
+
+.section{
+  border:1px solid #e5e5e5;
+  border-radius:12px;
+  padding:25px;
+  margin-bottom:25px;
+}
+
+.section h2{
+  margin-top:0;
+}
+
+.point{
+  margin:8px 0;
+  padding-left:18px;
+  position:relative;
+}
+
+.point::before{
+  content:"✔";
+  position:absolute;
+  left:0;
+}
+
+.code{
+  background:#f6f6f6;
+  padding:15px;
+  border-radius:8px;
+  overflow-x:auto;
+  margin:15px 0;
+  font-family: monospace;
+}
+
+.table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:15px;
+}
+
+.table th,
+.table td{
+  border:1px solid #ddd;
+  padding:10px;
+  text-align:left;
+}
+
+.summary{
+  background:#fafafa;
+  border:1px solid #e5e5e5;
+  padding:20px;
+  border-radius:12px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>PART 5 – Mongoose ODM Fundamentals</h1>
+
+<div class="section">
+<h2>✅ 1️⃣ What is ORM?</h2>
+
+<p>ORM full form:</p>
+<p><b>Object Relational Mapping</b></p>
+
+<p>👉 SQL database use panna ORM use pannuvanga.</p>
+<p>👉 Table ah object ah map pannum.</p>
+
+<p><b>Example:</b></p>
+<p>SQL Table → JavaScript Object</p>
+
+<div class="code">
+SELECT * FROM users;
+</div>
+
+<p>ORM use pannina:</p>
+
+<div class="code">
+User.find()
+</div>
+
+<p>👉 SQL query write panna thevai illa.</p>
+
+<p><b>English Sentence:</b><br>
+ORM maps database tables to programming language objects.</p>
+</div>
+
+<div class="section">
+<h2>✅ 2️⃣ What is ODM?</h2>
+
+<p>ODM full form:</p>
+<p><b>Object Document Mapper</b></p>
+
+<p>👉 MongoDB SQL illa.</p>
+<p>👉 MongoDB document-based database.</p>
+<p>👉 So ORM illa → ODM use pannuvom.</p>
+
+<p>ODM map pannum:</p>
+
+<p>Collection → Model</p>
+<p>Document → Object</p>
+
+<p><b>English Sentence:</b><br>
+ODM maps MongoDB documents to JavaScript objects.</p>
+</div>
+
+<div class="section">
+<h2>✅ 3️⃣ What is Mongoose?</h2>
+
+<p>👉 Mongoose na Node.js ku MongoDB kuda connect panna use pannura library.</p>
+<p>👉 MongoDB oda pesurathu easy aakum.</p>
+<p>👉 Schema define panna allow pannum.</p>
+<p>👉 Validation support pannum.</p>
+
+<p><b>Install panna:</b></p>
+
+<div class="code">
+npm i mongoose
+</div>
+
+<p><b>English Sentence:</b><br>
+Mongoose is an ODM library used in Node.js to interact with MongoDB easily.</p>
+</div>
+
+<div class="section">
+<h2>✅ 4️⃣ Why Mongoose Needed?</h2>
+
+<p>Direct MongoDB use pannalam.</p>
+
+<p>But:</p>
+
+<p class="point">Validation illa</p>
+<p class="point">Structure control illa</p>
+<p class="point">Code messy aagum</p>
+<p class="point">Raw queries write panna vendum</p>
+
+<p>Mongoose use pannina:</p>
+
+<p class="point">Schema define pannalam</p>
+<p class="point">Validation add pannalam</p>
+<p class="point">Cleaner code</p>
+<p class="point">Built-in methods irukum</p>
+</div>
+
+<div class="section">
+<h2>✅ 5️⃣ What is Schema?</h2>
+
+<p>👉 Schema na structure define pannura blueprint.</p>
+
+<div class="code">
+import mongoose from "mongoose"
+
+const userSchema = new mongoose.Schema({
+  name: String,
+  age: Number,
+  email: String
+})
+</div>
+
+<p>👉 Inga name, age, email fields define pannom.</p>
+
+<p><b>Schema = Rules + Structure</b></p>
+
+<p><b>English Sentence:</b><br>
+A schema defines the structure and rules of documents in a collection.</p>
+</div>
+
+<div class="section">
+<h2>✅ 6️⃣ What is Model?</h2>
+
+<p>Schema create pannina apram:</p>
+
+<div class="code">
+const User = mongoose.model("User", userSchema)
+</div>
+
+<p>👉 Ithu than Model.</p>
+
+<p>Model use pannithan:</p>
+
+<p class="point">Data create</p>
+<p class="point">Data find</p>
+<p class="point">Data update</p>
+<p class="point">Data delete</p>
+
+<p><b>English Sentence:</b><br>
+A model is a constructor compiled from a schema and is used to interact with the database.</p>
+</div>
+
+<div class="section">
+<h2>✅ 7️⃣ Built-in Mongoose Methods (Very Important)</h2>
+
+<p>Mongoose la built-in methods iruku:</p>
+
+<div class="code">
+User.create()
+User.find()
+User.findById()
+User.findByIdAndUpdate()
+User.findByIdAndDelete()
+</div>
+
+<table class="table">
+<tr>
+<th>SQL</th>
+<th>Mongoose</th>
+</tr>
+<tr>
+<td>INSERT</td>
+<td>create()</td>
+</tr>
+<tr>
+<td>SELECT</td>
+<td>find()</td>
+</tr>
+<tr>
+<td>SELECT id</td>
+<td>findById()</td>
+</tr>
+<tr>
+<td>UPDATE</td>
+<td>findByIdAndUpdate()</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>findByIdAndDelete()</td>
+</tr>
+</table>
+
+<p>👉 Raw query avoid pannalam.</p>
+</div>
+
+<div class="section">
+<h2>✅ 8️⃣ Validation Example</h2>
+
+<div class="code">
+const userSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  age: {
+    type: Number,
+    min: 18
+  }
+})
+</div>
+
+<p class="point">name compulsory</p>
+<p class="point">age minimum 18</p>
+
+<p>Validation automatic ah nadakkum.</p>
+</div>
+
+<div class="section">
+<h2>✅ 9️⃣ Important Teaching Flow</h2>
+
+<p>Class la ipdi explain pannunga:</p>
+
+<p class="point">MongoDB → Database</p>
+<p class="point">Mongoose → Library</p>
+<p class="point">Schema → Structure</p>
+<p class="point">Model → Database interact panna use pannuvom</p>
+<p class="point">Methods → create, find, update, delete</p>
+</div>
+
+<div class="summary">
+<h2>🎯 PART 5 Summary</h2>
+
+<p class="point">ORM → SQL ku</p>
+<p class="point">ODM → MongoDB ku</p>
+<p class="point">Mongoose → Node.js ODM</p>
+<p class="point">Schema → Structure define pannum</p>
+<p class="point">Model → DB interact pannum</p>
+<p class="point">Built-in methods → create(), find(), update(), delete()</p>
+<p class="point">Validation support iruku</p>
+</div>
+
+</div>
+
+</body>
+</html>

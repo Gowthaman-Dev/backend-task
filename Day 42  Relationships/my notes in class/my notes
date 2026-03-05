@@ -1,0 +1,45 @@
+JWT - jwt is stand for jsonwebtoken - it is a cameback self contain sucure way to transfor information between two partys as a json object the inside the token degitally signed which means its can't be modify without envlid at the signators jwt is widely used in authendication system to maintain user sections securly in modern web application jwt token conceste the three part of sperated by dot 
+
+=>Header Information -> the header contains signing algoritham 
+=>payload -> user la data type pannuvom la antha data type pannurathu ku than payload 
+->ithu naama kudukura content 
+=>sinaguer securt key 
+
+
+->the signauer endsure  that the token has not be tember with 
+->this stuture make jwt more screcure and lightweight 
+->its a state less the meaning of server doesn't need to store section data memory or database 
+->onces a token generated server doesnt need to store section data in memory or database 
+
+once token create and send to the client the client send back every request the server verific each time 
+
+jwt is commomly used in rest APIs where fronent and backend 
+
+
+=>Authentication
+=>Authorization
+=>Secure API communication
+
+
+npm i jsonwebtoken
+
+jwt ithu oru object ithula sign ithuvanthu generate the token ithula 3 parameter pass pannanum one payload this is user imformation next secret key itha env la podalam next options expiry date , hour , date , month nu expiry date podalam 
+
+->payload 
+->secret key 
+->options - ithu kulla kudukurathu yellam object ta than irukum 
+
+->sign - ithuthan token generation every request verify pannanum la so verify function ithula token plus secuet key 
+
+->this two is jwt process 
+
+=>token create panna sign function 
+->ithula 3 parameter ,payload,secuert key , option , 
+
+
+
+
+-------------------------
+react-router-dom la uselocation check 
+
+-------------------------

@@ -1,0 +1,33 @@
+*data request object lathan varum ithu function la first parameter ra varum 
+
+*Request Object - req-body,params,header,query
+
+->ithuku server , route setup , API , datas , thunder client venum or postman ithalam venum 
+
+=>body la irunthu oru data varuthuna athu from la iruthu vara data than ithuku peru peaload 
+->body request object la irukum request object function la irukum antha function un controller file la irukum
+-> ithoda method post method 
+
+
+
+
+=>params 
+->dunamic id's face panni process pannanum kaga irukathu params 
+->itha get method la than use pannanum 
+->ithu update and delete panrapa use agum   
+
+
+
+*params create panna poram 
+
+->reqRoute.post("/getdatabyNumber/:useridbynumber",getdatabynumber)
+
+->/:useridbynumber ippudi poda params la vanguram nu artham 
+
+
+=>query 
+->mostly search and filtering process ku mattum than use pannuvanga 
+
+=>Header 
+->from la send panna mudiyatha addtional information na header la kudupanga securty propuse kagathu like , tocken , scury key 
+

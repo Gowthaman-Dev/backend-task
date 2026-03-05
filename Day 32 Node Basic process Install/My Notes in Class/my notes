@@ -1,0 +1,112 @@
+Web Development 
+
+1.Normal Core JS + html - php   - 4000
+2.libraries - react , jquery
+3.framework - angular , nexts,
+4. for backend is express is a framework - MVCS
+
+
+
+Framework is inversion of controll 
+diside the struture 
+express js mimimal and flexble work framework build on the top of node js
+its is use for web application and rest API 
+its provides rooting and request responpes and 
+
+Node js is became come complex for the large application 
+express simmilifly the server convension by building  and middle var handling 
+
+
+how its works - 
+
+                     HTTP(Master)
+Frontend  -request (data kutukalam - data kekkalam ) - (body,params,query,headers) - (post,get,put,patch,delete) - Server(local(5000,3000)-online) - Route(API) - controller(js core - mongodp(orm)or sql) -->>> DB connection
+
+
+
+=>CRUD
+
+*(npm init -y) -> y na yes nu meaning yellathukum yes nu kuduthurum defalut ta yes podurum yellathukum 
+
+*(npm i express nodemon dotenv)  -> express is framework , nodemon server ra automattic ka restart panra libray ,  dotenv -  ithu namma vachi iruka env ya process la poi podanum na intha dotenv ya confie pannanum - so three libray install pannanum
+
+
+*(echo .> server.js) file create pannurathu kana shortcut 
+
+*(cls) ippudi poda yellam clear agidum
+
+*(.env) file create
+
+*(package.json) -> change it 
+
+->"type":"module",
+->"main": "server.js",enna name vachamo athan kudukanum 
+->"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev":"nodemon server.js"
+  },
+
+  *(.env) 
+  ->PORT = 5000
+
+
+*(gitignore) 
+->.env
+
+
+
+*(server.js)
+->import express from 'express'
+console.log(express)
+
+*(npm run dev)
+
+-----------------------------------------------------------------------
+
+
+sir type notes;
+
+Web Development
+1. Noraml Core JS + html - php       - 4000
+2. libraries - React, jquery
+3. Framework - angular , nextjs,
+
+
+
+4. for backend is express is a framework - MVCS
+
+How its works -
+
+HOST - Online - localhost(5173)
+                             HTTP(Master)
+Frontend - Request(data kutukalam - data kekkalam) - (body,params,query,headers) - (post,get,put,patch,delete) Response(json,text(status()))<<<<- Server(local(5000,3000)-online) - Route(API) - Controller(js core - mongodb(orm) or sql)   --->>> DB connection
+
+
+
+CRUD
+
+
+
+install express
+nodemon
+
+.env
+
+
+
+
+step 1 : npm init -y
+Step 2 : npm i express dotenv nodemon
+step 3 : filename - file - .env - > gitignorance
+step 4 : package.json -> type:module, name: change, script -> start node filename,dev -> nodemon filename
+step 5 : open .env -   PORT = 5000
+step 6 : ingorance -   .env
+step 7 : file opne - > express import -> expression variable save - dotenv - config -
+expression - > process.env.PORT ->  app.listen(PORT,()=>{console.log(`http://localhost:${PORT}`)})
+
+step 8: npm run dev
+
+output : http://localhost:${PORT}
+
+

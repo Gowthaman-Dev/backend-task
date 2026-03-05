@@ -1,0 +1,32 @@
+the responces object in express resprestent the http respones then the server send back to the client 
+
+the server must send something back that outging handled useing the responce object 
+the responces object is provided automatically by express inside every root handler its containes method that allow as to text json files , status code , headers , and more without sending the responces will hang and cilent will keep waiting object the resonpce object is repomsible for completing the request responces cycle it ensure that communicate with cilent and server thats it 
+
+
+mainapp.use(express.json())->http la irunthu vara data va autimattic ka object ta varatha string ga illa string ga varatha object ta voo convert pannurathu than intha json ->itha pannalana body la data varathu ->request work agum but athula data varathu 
+
+
+=>
+*Normal Api -> server to server connection 
+
+*Rest Api -> is post , get , put , delete 
+->this also server to server conncetion but ithula methods iruku post method da get method da ithu mattam method iruku  
+->Rest Api use panna strict rules irukum 
+
+
+=>res.send -> ithula object anupa mudiyathu only textthan anupalam
+
+=>route.get("/getjsondata/:userid",getDataJson) 
+->params ku ippudi than write pannaum 
+->userid1 nu iruntha object la data anupuvan 
+->userid2 nu iruntha illapa intha user ku naa data thara mattan nu oru reference anupa poran 
+
+=>routes file =>controller
+
+->
+
+
+=> Text Responces ;
+
+           

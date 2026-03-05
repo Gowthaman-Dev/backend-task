@@ -1,0 +1,13 @@
+Backend  - server (PORT) - route - controller(req,res) - db - modle
+
+Frontend - vite project - fetch() - axios()
+
+Fetch is the build in web api provided by modern browser to make http request a frontend to a server it allows javascript to communicate with backend api using modern like get,post,put,delete since its build in browser , i doesn't required any librey its return the promise it resolve when the request complte fecth doesnt automattucally reject the promise insert we must maullyally and fetch is it doesnt automattically parse the json to manually parse the json 
+
+
+axoios - is the third party http client libreay use to make api resquest both frontend and backend , its must be install axoios its simpily http request provides axios automatically transfrom json data when you send intenally dont need to call json allow automally request the promise for http error status code like provider addtionally furture like reauest and responces intersater
+->node la work agum 
+
+
+
+=>api naa large set data other user kitta vangalama vera oru application nooda interface sa inga use pannalam 

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{
+  font-family: "Segoe UI", Arial, sans-serif;
+  background:#ffffff;
+  color:#222;
+  line-height:1.8;
+  padding:40px;
+}
+.container{
+  max-width:1000px;
+  margin:auto;
+}
+h1{
+  text-align:center;
+  color:#0f172a;
+  margin-bottom:30px;
+}
+.section{
+  border:1px solid #e5e7eb;
+  padding:25px;
+  margin-bottom:25px;
+  border-radius:10px;
+  background:#f9fafb;
+}
+.section h2{
+  color:#1d4ed8;
+  margin-bottom:15px;
+}
+.section h3{
+  color:#111827;
+  margin-top:15px;
+}
+ul{
+  padding-left:25px;
+}
+ul li{
+  margin-bottom:8px;
+}
+.code{
+  background:#f3f4f6;
+  padding:15px;
+  border-radius:8px;
+  margin-top:10px;
+  white-space:pre-wrap;
+  font-family:monospace;
+  font-size:14px;
+}
+.highlight{
+  background:#eef2ff;
+  padding:15px;
+  border-left:4px solid #6366f1;
+  margin-bottom:30px;
+  border-radius:8px;
+  font-weight:500;
+}
+.arch{
+  background:#f1f5f9;
+  padding:20px;
+  border-radius:8px;
+  font-family:monospace;
+  white-space:pre-wrap;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>✅ Part 6 – Schema Creation (Most Important Part)</h1>
+
+<div class="highlight">
+இது MongoDB + Mongooseல ரொம்ப முக்கியமான concept 🔥  
+Schema clearஆ புரிஞ்சா தான் DB architecture strong ஆகும்.
+</div>
+
+<div class="section">
+<h2>🔹 1️⃣ What is Schema?</h2>
+<p>👉 Schema = Structure of Document</p>
+
+<p>MongoDBல data JSON formatல store ஆகும்.  
+ஆனா எந்த field வரணும்? எந்த type? default value என்ன?  
+இதெல்லாம் define பண்ணுறது தான் Schema.</p>
+
+<div class="code">
+const userSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  age: Number
+})
+</div>
+
+<p>இதன் அர்த்தம்:</p>
+<ul>
+<li>name → String</li>
+<li>email → String</li>
+<li>age → Number</li>
+</ul>
+
+<p>🎯 Schema = Blueprint of Collection</p>
+</div>
+
+<div class="section">
+<h2>🔹 2️⃣ Why Schema Mandatory?</h2>
+
+<p>MongoDB itself schema-less database.</p>
+
+<p>அப்படின்னா schema தேவையில்லையா?</p>
+
+<p>❌ Direct MongoDBல தேவையில்லை  
+✅ But Mongoose use பண்ணும்போது mandatory</p>
+
+<p>ஏன்?</p>
+<ul>
+<li>Data validation</li>
+<li>Proper structure</li>
+<li>Type checking</li>
+<li>Default values</li>
+<li>Security</li>
+</ul>
+
+<p>Without schema:</p>
+<div class="code">
+{ name: 123, email: true }
+</div>
+
+<p>Wrong data save ஆகிடும் 😵</p>
+
+<p>With schema:  
+Mongoose error throw பண்ணும்.</p>
+
+<p>👉 அதனால தான் schema mandatory.</p>
+</div>
+
+<div class="section">
+<h2>🔹 3️⃣ Why Constructor? (new mongoose.Schema())</h2>
+
+<p>Schema ஒரு constructor function.</p>
+
+<p>Constructorனா என்ன?</p>
+
+<p>👉 Object create பண்ண பயன்படும் special function.</p>
+
+<p>நாம் new keyword use பண்ணி instance create பண்ணுறோம்.</p>
+
+<div class="code">
+new mongoose.Schema()
+</div>
+
+<p>இதுல internally:</p>
+<ul>
+<li>New Schema object create ஆகும்</li>
+<li>Fields store ஆகும்</li>
+<li>Validation rules attach ஆகும்</li>
+<li>Options attach ஆகும்</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>🔹 4️⃣ import mongoose</h2>
+
+<div class="code">
+import mongoose from "mongoose"
+</div>
+
+<p>Mongoose = ODM (Object Data Modeling) library.</p>
+
+<p>👉 MongoDB & Node.js க்கு நடுவில் bridge மாதிரி work பண்ணும்.</p>
+
+<div class="arch">
+Architecture:
+
+Node App → Mongoose → MongoDB
+</div>
+</div>
+
+<div class="section">
+<h2>🔹 5️⃣ Field Types</h2>
+
+<h3>🔸 String</h3>
+<div class="code">
+name: String
+</div>
+<p>Store text data.</p>
+
+<p>Example:</p>
+<div class="code">
+"Gowtham"
+</div>
+
+<h3>🔸 Default Value</h3>
+<div class="code">
+isActive: {
+  type: Boolean,
+  default: true
+}
+</div>
+
+<p>User value குடுக்கலேன்னா  
+Default automatically save ஆகும்.</p>
+
+<p>Example saved document:</p>
+<div class="code">
+{
+  "name": "Gowtham",
+  "isActive": true
+}
+</div>
+</div>
+
+<div class="section">
+<h2>🔹 6️⃣ timestamps: true</h2>
+
+<div class="code">
+const userSchema = new mongoose.Schema({
+  name: String
+}, {
+  timestamps: true
+})
+</div>
+
+<p>இது enable பண்ணா automatically இரண்டு fields add ஆகும்:</p>
+<ul>
+<li>createdAt</li>
+<li>updatedAt</li>
+</ul>
+
+<h3>🔹 createdAt</h3>
+<p>Document first time save ஆகும் போது  
+automatic date store ஆகும்.</p>
+
+<p>Example:</p>
+<div class="code">
+"createdAt": "2026-02-20T05:00:00.000Z"
+</div>
+
+<h3>🔹 updatedAt</h3>
+<p>Document update பண்ணும் போது  
+automatic update time change ஆகும்.</p>
+</div>
+
+<div class="section">
+<h2>🔥 Internally என்ன நடக்குது?</h2>
+
+<ul>
+<li>Schema create ஆகுது</li>
+<li>Mongoose model உருவாக்குது</li>
+<li>Model MongoDB collection connect ஆகுது</li>
+<li>Save பண்ணும் போது:</li>
+<li>Validation check</li>
+<li>Default values set</li>
+<li>Timestamps add</li>
+<li>Then MongoDBக்கு send</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>🎯 Full Example</h2>
+
+<div class="code">
+import mongoose from "mongoose"
+
+const userSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  email: String,
+  isActive: {
+    type: Boolean,
+    default: true
+  }
+}, {
+  timestamps: true
+})
+
+const User = mongoose.model("User", userSchema)
+
+export default User
+</div>
+</div>
+
+<div class="section">
+<h2>🧠 DB Architecture Clear View</h2>
+
+<div class="arch">
+Schema → Model → Collection → Document
+
+Schema = Structure
+Model = Controller
+Collection = Table
+Document = Row
+</div>
+</div>
+
+<div class="section">
+<h2>🚀 Simple Real-Time Flow</h2>
+
+<div class="arch">
+Client → Route → Controller → Model → Schema → MongoDB
+</div>
+</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background:#0f172a;
+  color:#ffffff;
+  padding:30px;
+  line-height:1.7;
+}
+h1{
+  text-align:center;
+  color:#38bdf8;
+}
+.part{
+  background:#1e293b;
+  padding:20px;
+  margin-bottom:25px;
+  border-radius:12px;
+  border-left:6px solid #38bdf8;
+}
+h2{
+  color:#facc15;
+}
+ul{
+  list-style-type:none;
+  padding-left:20px;
+}
+li::before{
+  content:"🔹 ";
+  color:#22c55e;
+}
+.goal{
+  margin-top:15px;
+  padding:10px;
+  background:#0f172a;
+  border-left:4px solid #22c55e;
+  color:#22c55e;
+  font-weight:bold;
+}
+.strategy{
+  background:#111827;
+  padding:20px;
+  border-radius:12px;
+  border-left:6px solid #f97316;
+}
+</style>
+</head>
+<body>
+
+<h1>🔥 Full Course Structure (Movie CRUD – MongoDB + Mongoose + Express)</h1>
+
+<div class="part">
+<h2>✅ Part 1 – MongoDB Basic + ORM vs ODM Concept</h2>
+<ul>
+<li>What is Database?</li>
+<li>What is MongoDB?</li>
+<li>What is ORM?</li>
+<li>What is ODM?</li>
+<li>Difference between ORM & ODM</li>
+<li>Why we use Mongoose?</li>
+<li>Mongoose role in backend</li>
+<li>MongoDB Structure:</li>
+<li>DB</li>
+<li>Collection</li>
+<li>Document</li>
+<li>Field</li>
+<li>SQL vs MongoDB mapping:</li>
+<li>Table → Collection</li>
+<li>Row → Document</li>
+<li>Column → Field</li>
+<li>Primary Key → _id</li>
+<li>INSERT → create()</li>
+<li>SELECT → find()</li>
+<li>UPDATE → findByIdAndUpdate()</li>
+<li>DELETE → findByIdAndDelete()</li>
+</ul>
+<div class="goal">🎯 Goal: Student-ku clear-a database architecture puriyanum.</div>
+</div>
+
+<div class="part">
+<h2>✅ Part 2 – Project Setup + Folder Structure</h2>
+<ul>
+<li>npm init</li>
+<li>package.json explain</li>
+<li>type: module why?</li>
+<li>Install:</li>
+<li>express</li>
+<li>mongoose</li>
+<li>cors</li>
+<li>dotenv</li>
+<li>nodemon</li>
+<li>Folder Structure:</li>
+<li>config</li>
+<li>modules</li>
+<li>controller</li>
+<li>routes</li>
+<li>server.js</li>
+</ul>
+<div class="goal">🎯 Goal: Clean project architecture puriyanum.</div>
+</div>
+
+<div class="part">
+<h2>✅ Part 3 – Express Server Setup</h2>
+<ul>
+<li>import express</li>
+<li>app creation</li>
+<li>app.listen()</li>
+<li>process.env.PORT</li>
+<li>dotenv.config()</li>
+<li>Why .env?</li>
+<li>connectdb() why call before listen?</li>
+</ul>
+<div class="goal">🎯 Server lifecycle puriyanum.</div>
+</div>
+
+<div class="part">
+<h2>✅ Part 4 – CORS & express.json() Deep Explanation</h2>
+<ul>
+<li>movie.use(cors())</li>
+<li>movie.use(express.json())</li>
+<li>What is CORS?</li>
+<li>Why frontend-backend separate irundha thevai?</li>
+<li>When CORS not required?</li>
+<li>express.json() use panna reason?</li>
+<li>MongoDB connect aaganum-na ithu thevai illa</li>
+<li>HTTP request body parse panna mattum use</li>
+</ul>
+<div class="goal">🎯 HTTP request flow puriyanum.</div>
+</div>
+
+<div class="part">
+<h2>✅ Part 5 – MongoDB Connection (connectdb)</h2>
+<ul>
+<li>mongoose.connect()</li>
+<li>process.env.MONGOOSE_URL</li>
+<li>What happens internally?</li>
+<li>conn.connection.host</li>
+<li>Error handling</li>
+</ul>
+<div class="goal">🎯 DB connection architecture clear aaganum.</div>
+</div>
+
+<div class="part">
+<h2>✅ Part 6 – Schema Creation (Most Important Part)</h2>
+<ul>
+<li>What is Schema?</li>
+<li>Why Schema mandatory?</li>
+<li>Why constructor?</li>
+<li>import mongoose</li>
+<li>new mongoose.Schema()</li>
+<li>Field types:</li>
+<li>String</li>
+<li>default value</li>
+<li>timestamps:true</li>
+<li>createdAt</li>
+<li>updatedAt</li>
+</ul>
+<div class="goal">🎯 Schema concept solid-a irukanum.</div>
+</div>
+
+<div class="part">
+<h2>✅ Part 7 – Model Creation</h2>
+<ul>
+<li>mongoose.model("movieData", moviesechma)</li>
+<li>What is Model?</li>
+<li>Why model after schema?</li>
+<li>Model acts as bridge between:</li>
+<li>MongoDB</li>
+<li>Application</li>
+</ul>
+<div class="goal">🎯 Model = Collection controller nu puriyanum.</div>
+</div>
+
+<div class="part">
+<h2>✅ Part 8 – Route Mounting</h2>
+<ul>
+<li>movie.use("/api/movie",movieroute)</li>
+<li>What is route mounting?</li>
+<li>Why separate route file?</li>
+<li>Why express.Router()?</li>
+<li>URL structure:</li>
+<li>/api/movie/create</li>
+<li>/api/movie/get</li>
+</ul>
+<div class="goal">🎯 Clean API architecture puriyanum.</div>
+</div>
+
+<div class="part">
+<h2>✅ Part 9 – Controller Logic – Create API</h2>
+<ul>
+<li>req.body</li>
+<li>movieDataModules.create()</li>
+<li>async/await</li>
+<li>try/catch</li>
+<li>status codes:</li>
+<li>201</li>
+<li>404</li>
+<li>Response JSON structure</li>
+</ul>
+<div class="goal">🎯 CRUD create flow puriyanum.</div>
+</div>
+
+<div class="part">
+<h2>✅ Part 10 – Get All Data + Filter</h2>
+<ul>
+<li>find()</li>
+<li>filter()</li>
+<li>Why filter in JS bad practice?</li>
+<li>Better way:</li>
+<li>find({movieName:"Forever You"})</li>
+</ul>
+<div class="goal">🎯 Database level filtering importance puriyanum.</div>
+</div>
+
+<div class="part">
+<h2>✅ Part 11 – Get By ID</h2>
+<ul>
+<li>req.params</li>
+<li>:userid</li>
+<li>findById()</li>
+<li>Returning single field:</li>
+<li>getbyid.MovieType</li>
+</ul>
+<div class="goal">🎯 Dynamic routing puriyanum.</div>
+</div>
+
+<div class="part">
+<h2>✅ Part 12 – Full Architecture Recap</h2>
+<ul>
+<li>Client → Route → Controller → Model → Schema → MongoDB</li>
+<li>Full data flow diagram explain pannanum.</li>
+</ul>
+</div>
+
+<div class="strategy">
+<h2>🧠 Final Teaching Strategy</h2>
+<ul>
+<li>First day – Part 1 & 2</li>
+<li>Next day – Part 3 & 4</li>
+<li>Next – Part 5,6</li>
+<li>Next – Part 7,8</li>
+<li>Next – Part 9</li>
+<li>Next – Part 10,11</li>
+<li>Final – Part 12 recap</li>
+</ul>
+</div>
+
+</body>
+</html>

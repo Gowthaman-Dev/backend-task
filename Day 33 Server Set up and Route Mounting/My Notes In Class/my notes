@@ -1,0 +1,176 @@
+=>Micro Service - MonoLathic 
+=>MVC pattern - Module view controller service 
+=>Express framwork - 
+=>server - port - Number 
+=>Route handling - routes - route mounting 
+=>Middlewares 
+=>controllers
+
+
+
+=>Micro Service - MonoLathic 
+
+*Micro service 
+->one project three or four team work different three four server use and handle 
+->oru project ta multi server la pannuvanga login ku thani server validation ku thani server 
+
+*MonoLathic
+->one server many people do , mid level app means do like this 
+
+
+
+=>MVC pattern - Module view controller service <-ithu dot net la irunthu vanthathu
+
+=>Express framwork - 
+
+
+=>server - port Number 
+*prot number make pannathan intha server use panrom 
+
+
+----------------------------------------------------------
+
+routing means deciding how the server should respone with the cliet URL when the brower are frontend application send the request its include the path like the server must check that path and disaide what logic to execute the decision making process that call so the simple word process mapping URL and to the spcific url without routing return the same response 
+
+in node js core request method url and manuvla 
+
+framework express 
+
+type of routing routing are useualy based on http method each method define what kind of Rest API
+API standed for application programing interface <= IMPROTANT 
+its is the brige its allows to softeware to each other 
+
+In web development api allow frontend application to the backend server and api depend the set of rule what url to call what method to use what data to send what responce u expect
+
+its ensure stuture client and server and json format send data  
+API is the sturture way of client and server
+
+-------------------------------------------------------------
+
+Route Mounting means attacing the spifive root logic to sertine the space loge we group related root to group 
+Route Mounting help frontend and backend related base path la set pannuarthu tha root mouting 
+
+
+--------------------------------------------------------------
+server.js
+
+import express from 'express'
+import dotenv from 'dotenv'
+
+use - is the middle were function
+
+const route = express.Router()
+
+route.post("/myroute/user",)
+
+------------------------------------
+userController.js
+
+app.use(cor()) third perty post allow pannurathu
+
+---------------------------------
+
+middle were naa rendu function ku naduvula request kum responces kum naduvula process agura function build-in function 
+
+app.use()
+*ithula two parameter pass pannalam one parameter link yethuva vena irukalam string ga irukalam ennava vena irukalam  
+another parameter handler is relate panna pora file so anga handle filename ma irukalam function na irukalam ennava vena irukalam illana callback function na irukalam 
+
+*callBack use panra method ku peru than static path static root 
+
+root monting use panna handler use pannanum appo handler ku oru file venum 
+------------------------------------
+
+const route = express.Router()
+
+intha function kulla than http method thana Post ,Get , Put , Path , Delete ithukulathan 
+
+route ku romba mukiyam http method URL plus http method senthathan un data travel panna mudiyum 
+
+----------------------------------
+route.post()
+*application la login page vachi iruntha post method use pannanum 
+
+*data va fetch panna porana get method vaikanum 
+
+oru application la open pannathum onnu get la data va yedupanga illa post la data va kudupanga ithu rendum than oru application la staring la nadakum 
+------------------------------------
+route.post()
+->two parameter 
+*one -path
+
+route.post("/myroute/user",) second la onnu call back function kudukanum or handler or middleware ithu munum function than 
+-> handler and middleware kudutha vera oru page ku pogum 
+
+ithula kuduka pora handler than pure logic 
+
+
+-----------------------------------
+
+create folder controller 
+(userController.js)
+
+*ithula niraiya function write pannurathu naala ithula export defalut poda mattanga ithla named export than use pannuvanga 
+
+-----------------------------------
+
+export const createUser =(request,responce)=>{
+
+     
+
+}
+
+=>request object la 4 thing important 
+*body
+*params
+*query
+*header
+
+
+=>responce anupanum na entha way la anupa lam 
+
+*text
+*json 
+*status
+
+
+-----------------------------------
+
+import express from 'express'
+import { createUser } from '../controller/userControllers.js'
+
+const route = express.Router()
+
+route.post("/myroute/user",createUser)
+
+this is local modules
+
+
+*.js nu podanum 
+
+---------------------------------
+
+// API LINK FOR XXXX METHOD -  http://localhost:5000/api/route/myroute/user
+
+// API FOR GET THE DATAS  -  http://localhost:5000/api/route/myroute/getuser
+
+
+ithulam yappo hit agum - data va fecth pannum pothu , fetch function , button na click panna fetch pannanum nu write pannalam , useeffect(), oru event nadanthathan intha API treger agum appo antha event nadaka vaikurathu than frontend la en velai 
+
+enna responces sa varum json na varum json enna format  object ra varum so collection of datas sa yedukalam atha yeduthu frontend la show pannalam 
+
+---------------------------
+
+app.use(cors())
+=> npm i cors 
+=>import cors from cors 
+*other platform vulla varanum nu poduram 	
+---------------------------
+
+http iruku athula datas yentha mari travel agum text ta travel agum 
+
+atha prash panna stringify panna 
+*app.use(express.json()) 
+ippudi podukuran 
+--------------------------------
+

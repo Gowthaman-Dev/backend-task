@@ -1,0 +1,60 @@
+db connection 
+
+=>ORM Methods
+
+create()
+find()
+findByID()
+findByIDAndUpdate()
+findByIDAndDelete()
+this are buildin function for orm method
+
+
+DB -> DB
+
+Table -> collection
+
+Row -> Document 
+
+column -> Field
+
+Primary Key  -> id
+
+INSERT -> create 
+
+SELECT -> find()
+
+UPDATE -> findByIDAndUpdate()
+
+Select id -> findById()
+
+Delete -> findByIDAndDelete()
+
+
+=>Schema 
+-> a schema in mangos define the sturture of mangodb collection 
+-> schema in mango define the stureture of mangodb collection its tell the database what filed is allowed what type data is stored 
+->what validation should be apply 
+->schema is the blue print 
+->schema maintain data consistency 
+->this help avoid storing ramdom data is stored
+
+
+=>in build propertypes
+{
+fieldname:{Type : String,required:true,unique:true,default:1,enum:["admin","manager"]}
+},timestamps:true 
+
+mango la iruka constertar function 
+
+modules is a create from a scehma its refernce the collection in the mangodb and allows to intract with that collection ,create , update , delete 
+->module is the ausall tool to the mango db collection 
+->every module in within the one connection  the create to a collection named user mango 
+->a module is a wrapper 
+
+
+=>module kulla than ORM method irukum 
+
+
+
+=>setting the server  - 
